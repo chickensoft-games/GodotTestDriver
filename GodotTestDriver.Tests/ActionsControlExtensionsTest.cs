@@ -49,6 +49,22 @@ public partial class ActionsControlExtensionsTest : DriverTest
     }
 
     [Test]
+    public void StartActionSetsGlobalActionJustPressed()
+    {
+        RootNode.StartAction(TestAction);
+        Input.IsActionJustPressed(TestAction).ShouldBeTrue();
+        RootNode.EndAction(TestAction);
+    }
+
+    [Test]
+    public void EndActionSetsGlobalActionJustReleased()
+    {
+        RootNode.StartAction(TestAction);
+        RootNode.EndAction(TestAction);
+        Input.IsActionJustReleased(TestAction).ShouldBeTrue();
+    }
+
+    [Test]
     public void StartActionSendsInputEvent()
     {
         var inputTestNode = new ActionInputEventTestNode
