@@ -46,7 +46,7 @@ public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
 
         var edit = VisibleRoot;
         await edit.GetTree().NextFrame();
-        await ClickCenter();
+        ClickCenter();
         edit.Text = text;
         edit.EmitSignal(LineEdit.SignalName.TextChanged, text);
         await edit.GetTree().WaitForEvents();

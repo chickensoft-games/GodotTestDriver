@@ -1,4 +1,4 @@
-﻿namespace Chickensoft.GodotTestDriver.Drivers;
+namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using System.Threading.Tasks;
@@ -103,7 +103,7 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
         var startSpot = new Vector2(pos.X + (width / 2f), pos.Y - (titleBarHeight / 2f));
         var endSpot = startSpot + offset;
 
-        await window.GetParent().GetViewport().DragMouse(startSpot, endSpot);
+        window.GetParent().GetViewport().DragMouse(startSpot, endSpot);
     }
 }
 

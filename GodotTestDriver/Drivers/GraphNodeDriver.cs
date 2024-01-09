@@ -1,7 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
-using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Input;
 using JetBrains.Annotations;
@@ -99,13 +98,13 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
     /// Drags the node by the given amount of pixels.
     /// </summary>
     /// <param name="delta">Change in distance.</param>
-    public async Task DragBy(Vector2 delta)
+    public void DragBy(Vector2 delta)
     {
         var dragStart = SelectionSpot;
         var dragEnd = dragStart + delta;
 
         // drag it
-        await Viewport.DragMouse(dragStart, dragEnd);
+        Viewport.DragMouse(dragStart, dragEnd);
     }
 
     /// <summary>
@@ -113,21 +112,21 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
     /// </summary>
     /// <param name="x">Horizontal cartesian coordinate component.</param>
     /// <param name="y">Vertical cartesian coordinate component.</param>
-    public async Task DragBy(float x, float y)
+    public void DragBy(float x, float y)
     {
-        await DragBy(new Vector2(x, y));
+        DragBy(new Vector2(x, y));
     }
 
     /// <summary>
     /// Drags the node by a multiple of its own size multiplied by the given factor.
     /// </summary>
     /// <param name="delta">Change in distance.</param>
-    public async Task DragByOwnSize(Vector2 delta)
+    public void DragByOwnSize(Vector2 delta)
     {
         var node = VisibleRoot;
         var rect = node.GetRect();
 
-        await DragBy(new Vector2(rect.Size.X * delta.X, rect.Size.X * delta.Y));
+        DragBy(new Vector2(rect.Size.X * delta.X, rect.Size.X * delta.Y));
     }
 
     /// <summary>
@@ -135,26 +134,26 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
     /// </summary>
     /// <param name="x">Horizontal cartesian coordinate component.</param>
     /// <param name="y">Vertical cartesian coordinate component.</param>
-    public async Task DragByOwnSize(float x, float y)
+    public void DragByOwnSize(float x, float y)
     {
-        await DragByOwnSize(new Vector2(x, y));
+        DragByOwnSize(new Vector2(x, y));
     }
 
     /// <summary>
     /// Selects the given node by clicking on it. Same as <see cref="ClickAtSelectionSpot"/>.
     /// </summary>
-    public async Task Select()
+    public void Select()
     {
-        await ClickAtSelectionSpot();
+        ClickAtSelectionSpot();
     }
 
     /// <summary>
     /// Clicks the mouse at the safe selection spot of this graph node.
     /// </summary>
     /// <param name="button">Button to use.</param>
-    public async Task ClickAtSelectionSpot(MouseButton button = MouseButton.Left)
+    public void ClickAtSelectionSpot(MouseButton button = MouseButton.Left)
     {
-        await Viewport.ClickMouseAt(SelectionSpot, button);
+        Viewport.ClickMouseAt(SelectionSpot, button);
     }
 
     /// <summary>
@@ -164,7 +163,7 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
     /// <param name="targetNode">Target node.</param>
     /// <param name="targetPort">Target node connection port.</param>
     /// <exception cref="ArgumentException"/>
-    public async Task DragConnection(Port sourcePort, GraphNodeDriver<T> targetNode, Port targetPort)
+    public void DragConnection(Port sourcePort, GraphNodeDriver<T> targetNode, Port targetPort)
     {
         if (!sourcePort.IsDefined)
         {
@@ -208,7 +207,7 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
             ? targetRoot.GetInputPortPosition(targetPort.PortIndex)
             : targetRoot.GetOutputPortPosition(targetPort.PortIndex);
 
-        await Viewport.DragMouse(startPosition + thisRoot.GlobalPosition,
+        Viewport.DragMouse(startPosition + thisRoot.GlobalPosition,
             endPosition + targetRoot.GlobalPosition);
     }
 
@@ -218,7 +217,7 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
     /// <param name="sourcePort">Source port.</param>
     /// <param name="relativePosition">Position offset.</param>
     /// <exception cref="ArgumentException"/>
-    public async Task DragConnection(Port sourcePort, Vector2 relativePosition)
+    public void DragConnection(Port sourcePort, Vector2 relativePosition)
     {
         if (!sourcePort.IsDefined)
         {
@@ -242,7 +241,7 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
             : thisRoot.GetOutputPortPosition(sourcePort.PortIndex);
         var endPosition = startPosition + relativePosition;
 
-        await Viewport.DragMouse(startPosition + thisRoot.GlobalPosition,
+        Viewport.DragMouse(startPosition + thisRoot.GlobalPosition,
             endPosition + thisRoot.GlobalPosition);
     }
 }

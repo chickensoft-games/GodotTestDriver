@@ -62,13 +62,13 @@ public class BaseButtonDriver<T> : ControlDriver<T> where T : BaseButton
     /// <param name="button">Mouse button.</param>
     /// <returns>Task that completes when the click finishes.</returns>
     /// <exception cref="InvalidOperationException" />
-    public override async Task ClickCenter(MouseButton button = MouseButton.Left)
+    public override void ClickCenter(MouseButton button = MouseButton.Left)
     {
         if (Disabled)
         {
             throw new InvalidOperationException(ErrorMessage("Button is disabled and cannot be pressed."));
         }
 
-        await base.ClickCenter(button);
+        base.ClickCenter(button);
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
 using System.Linq;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -51,7 +50,7 @@ public class GraphEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task DraggingNodesWorks()
+    public void DraggingNodesWorks()
     {
         // SETUP
         var firstNode = _graphEdit.Nodes.First();
@@ -59,7 +58,7 @@ public class GraphEditDriverTest : DriverTest
         var firstNodeOffset = firstNode.Offset;
         // WHEN
         // i drag the first node
-        await firstNode.DragByOwnSize(2, 0);
+        firstNode.DragByOwnSize(2, 0);
 
         // THEN
         // the offset has changed by 2x it's width
@@ -71,7 +70,7 @@ public class GraphEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task DraggingConnectionsWorks()
+    public void DraggingConnectionsWorks()
     {
         // SETUP
         var firstNode = _graphEdit.Nodes.First();
@@ -79,7 +78,7 @@ public class GraphEditDriverTest : DriverTest
 
         // WHEN
         // i drag a connection from the first node to the second node
-        await firstNode.DragConnection(Port.Output(0), secondNode, Port.Input(0));
+        firstNode.DragConnection(Port.Output(0), secondNode, Port.Input(0));
 
         // THEN
         // the connection works
@@ -87,7 +86,7 @@ public class GraphEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task DraggingConnectionsInReverseWorks()
+    public void DraggingConnectionsInReverseWorks()
     {
         // SETUP
         var firstNode = _graphEdit.Nodes.First();
@@ -95,7 +94,7 @@ public class GraphEditDriverTest : DriverTest
 
         // WHEN
         // i drag a connection from the second node to the first node
-        await secondNode.DragConnection(Port.Input(0), firstNode, Port.Output(0));
+        secondNode.DragConnection(Port.Input(0), firstNode, Port.Output(0));
 
         // THEN
         // the connection works
@@ -103,18 +102,18 @@ public class GraphEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task DisconnectingWorks()
+    public void DisconnectingWorks()
     {
         // SETUP
         var firstNode = _graphEdit.Nodes.First();
         var secondNode = _graphEdit.Nodes.Last();
 
         // make a connection
-        await firstNode.DragConnection(Port.Output(0), secondNode, Port.Input(0));
+        firstNode.DragConnection(Port.Output(0), secondNode, Port.Input(0));
 
         // WHEN
         // i disconnect the connection, by dragging it from the second node to the first node
-        await secondNode.DragConnection(Port.Input(0), firstNode, Port.Output(0));
+        secondNode.DragConnection(Port.Input(0), firstNode, Port.Output(0));
 
         // THEN
         // the connection is gone

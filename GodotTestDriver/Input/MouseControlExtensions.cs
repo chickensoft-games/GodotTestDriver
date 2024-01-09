@@ -1,8 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Input;
 
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -18,10 +16,10 @@ public static class MouseControlExtensions
     /// <param name="position">Position, in viewport coordinates.</param>
     /// <param name="button">Mouse button.</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task ClickMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
+    public static void ClickMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
     {
-        await viewport.PressMouseAt(position, button);
-        await viewport.ReleaseMouseAt(position, button);
+        viewport.PressMouseAt(position, button);
+        viewport.ReleaseMouseAt(position, button);
     }
 
     /// <summary>
@@ -30,19 +28,18 @@ public static class MouseControlExtensions
     /// <param name="viewport">Viewport.</param>
     /// <param name="position">Position, in viewport coordinates.</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task MoveMouseTo(this Viewport viewport, Vector2 position)
+    public static void MoveMouseTo(this Viewport viewport, Vector2 position)
     {
-        await viewport.ProcessFrame();
-
+        var oldPosition = viewport.GetMousePosition();
         viewport.WarpMouse(position);
         var inputEvent = new InputEventMouseMotion
         {
             GlobalPosition = position,
-            Position = position
+            Position = position,
+            Relative = position - oldPosition
         };
         Input.ParseInputEvent(inputEvent);
-
-        await viewport.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 
     /// <summary>
@@ -53,55 +50,49 @@ public static class MouseControlExtensions
     /// <param name="end">End position, in viewport coordinates.</param>
     /// <param name="button">Mouse button.</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task DragMouse(this Viewport viewport, Vector2 start, Vector2 end, MouseButton button = MouseButton.Left)
+    public static void DragMouse(this Viewport viewport, Vector2 start, Vector2 end, MouseButton button = MouseButton.Left)
     {
-        await viewport.PressMouseAt(start, button);
-        await viewport.ReleaseMouseAt(end, button);
+        viewport.PressMouseAt(start, button);
+        viewport.ReleaseMouseAt(end, button);
     }
 
     /// <summary>
     /// Presses the given mouse button.
     /// </summary>
-    /// <param name="viewport">Viewport.</param>
+    /// <param name="_">Viewport.</param>
     /// <param name="button">Mouse button (left by default).</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task PressMouse(this Viewport viewport, MouseButton button = MouseButton.Left)
+    public static void PressMouse(this Viewport _, MouseButton button = MouseButton.Left)
     {
-        await viewport.ProcessFrame();
-
         var action = new InputEventMouseButton
         {
             ButtonIndex = button,
             Pressed = true
         };
         Input.ParseInputEvent(action);
-
-        await viewport.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 
     /// <summary>
     /// Releases the given mouse button.
     /// </summary>
-    /// <param name="viewport">Viewport.</param>
+    /// <param name="_">Viewport.</param>
     /// <param name="button">Mouse button (left by default).</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task ReleaseMouse(this Viewport viewport, MouseButton button = MouseButton.Left)
+    public static void ReleaseMouse(this Viewport _, MouseButton button = MouseButton.Left)
     {
-        await viewport.ProcessFrame();
-
         var action = new InputEventMouseButton
         {
             ButtonIndex = button,
             Pressed = false
         };
         Input.ParseInputEvent(action);
-
-        await viewport.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 
-    private static async Task PressMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
+    private static void PressMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
     {
-        await MoveMouseTo(viewport, position);
+        viewport.MoveMouseTo(position);
 
         var action = new InputEventMouseButton
         {
@@ -110,13 +101,12 @@ public static class MouseControlExtensions
             Position = position
         };
         Input.ParseInputEvent(action);
-
-        await viewport.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 
-    private static async Task ReleaseMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
+    private static void ReleaseMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
     {
-        await MoveMouseTo(viewport, position);
+        viewport.MoveMouseTo(position);
 
         var action = new InputEventMouseButton
         {
@@ -125,7 +115,6 @@ public static class MouseControlExtensions
             Position = position
         };
         Input.ParseInputEvent(action);
-
-        await viewport.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 }
