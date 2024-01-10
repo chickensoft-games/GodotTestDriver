@@ -1,10 +1,8 @@
 namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
-using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Input;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -58,12 +56,10 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
     /// <summary>
     /// Closes the window by clicking the close button.
     /// </summary>
-    public async Task Close()
+    public void Close()
     {
         var window = VisibleRoot;
-        await window.GetTree().NextFrame();
         window.EmitSignal(Window.SignalName.CloseRequested);
-        await window.GetTree().WaitForEvents();
     }
 
     /// <summary>
@@ -71,9 +67,9 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
     /// </summary>
     /// <param name="x">Horizontal cartesian coordinate component.</param>
     /// <param name="y">Vertical cartesian coordinate component.</param>
-    public async Task DragByPixels(int x, int y)
+    public void DragByPixels(int x, int y)
     {
-        await DragByPixels(new Vector2I(x, y));
+        DragByPixels(new Vector2I(x, y));
     }
 
     /// <summary>
@@ -81,7 +77,7 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
     /// </summary>
     /// <param name="offset">Offset vector.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task DragByPixels(Vector2I offset)
+    public void DragByPixels(Vector2I offset)
     {
         var window = VisibleRoot;
 
@@ -90,8 +86,6 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
         {
             throw new InvalidOperationException(ErrorMessage("Dragging of root windows is not supported."));
         }
-
-        await window.GetTree().NextFrame();
 
         var titleBarHeight = window.GetThemeConstant("title_height");
 

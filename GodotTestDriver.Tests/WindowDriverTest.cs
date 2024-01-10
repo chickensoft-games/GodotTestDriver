@@ -1,6 +1,5 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -16,7 +15,7 @@ public class WindowDriverTest : DriverTest
     }
 
     [Test]
-    public async Task WindowClosingWorks()
+    public void WindowClosingWorks()
     {
         // GIVEN
         // the window is visible
@@ -24,7 +23,7 @@ public class WindowDriverTest : DriverTest
 
         // WHEN
         // i close the window
-        await _window.Close();
+        _window.Close();
 
         // THEN
         // the window is not visible
@@ -35,12 +34,12 @@ public class WindowDriverTest : DriverTest
     /// dragging the window works
     /// </summary>
     [Test]
-    public async Task WindowDraggingWorks()
+    public void WindowDraggingWorks()
     {
         var initialPosition = _window.Position;
         // WHEN
         // i drag the window
-        await _window.DragByPixels(100, 100);
+        _window.DragByPixels(100, 100);
 
         // THEN
         // the window is visible
