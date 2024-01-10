@@ -2,9 +2,7 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -165,7 +163,7 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
     /// </summary>
     /// <param name="index">Menu item index.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task SelectItemAtIndex(int index)
+    public void SelectItemAtIndex(int index)
     {
         var popup = VisibleRoot;
         VerifyIndex(index);
@@ -184,14 +182,11 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
                 $"Item at index {index} is a separator and cannot be selected.");
         }
 
-        await popup.GetTree().NextFrame();
-
         // select item
         // ideally we would use a mouse click here but since the API does not provide the position of
         // each entry, we have to fake it.
         popup.EmitSignal(PopupMenu.SignalName.IndexPressed, index);
         popup.Hide();
-        await popup.GetTree().WaitForEvents();
     }
 
     /// <summary>
@@ -214,7 +209,7 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
     /// </summary>
     /// <param name="id">Menu item id.</param>
     /// <exception cref="InvalidOperationException" />
-    public async Task SelectItemWithId(int id)
+    public void SelectItemWithId(int id)
     {
         var popup = PresentRoot;
         for (var i = 0; i < ItemCount; i++)
@@ -223,7 +218,7 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
             {
                 continue;
             }
-            await SelectItemAtIndex(i);
+            SelectItemAtIndex(i);
             return;
         }
 
@@ -236,7 +231,7 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
     /// </summary>
     /// <param name="text">Menu item label.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task SelectItemWithText(string text)
+    public void SelectItemWithText(string text)
     {
         var popup = PresentRoot;
         for (var i = 0; i < ItemCount; i++)
@@ -245,7 +240,7 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
             {
                 continue;
             }
-            await SelectItemAtIndex(i);
+            SelectItemAtIndex(i);
             return;
         }
 

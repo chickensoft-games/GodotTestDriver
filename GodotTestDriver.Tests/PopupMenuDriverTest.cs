@@ -1,7 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Tests;
 
 using System.Linq;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -59,7 +58,7 @@ public class PopupMenuDriverTest : DriverTest
     // named "Normal Item 1" and "Normal Item 2"
 
     [Test]
-    public async Task SelectingAnItemWorks()
+    public void SelectingAnItemWorks()
     {
         // WHEN
         // we press the button
@@ -67,7 +66,7 @@ public class PopupMenuDriverTest : DriverTest
 
         // and we select the first item
         var signalAwaiter = _popupMenu.GetSignalAwaiter(PopupMenu.SignalName.IndexPressed);
-        await _popupMenu.SelectItemWithText("Normal Item 1");
+        _popupMenu.SelectItemWithText("Normal Item 1");
 
         // THEN
         // the popup menu should be hidden
