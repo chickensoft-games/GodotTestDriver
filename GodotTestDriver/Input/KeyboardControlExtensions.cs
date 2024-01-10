@@ -20,7 +20,6 @@ public static class KeyboardControlExtensions
     /// <param name="alt">Alt modifier.</param>
     /// <param name="shift">Shift modifier.</param>
     /// <param name="meta">Meta-key (Windows, Command) modifier.</param>
-    /// <returns>Asynchronous task completed when key is released.</returns>
     public static void PressKey(
         this Node _,
         Key key,
@@ -79,7 +78,6 @@ public static class KeyboardControlExtensions
     /// <param name="alt">Alt modifier.</param>
     /// <param name="shift">Shift modifier.</param>
     /// <param name="meta">Meta-key (Windows, Command) modifier.</param>
-    /// <returns>Asynchronous task completed when key is released.</returns>
     public static void ReleaseKey(
         this Node _,
         Key key,
@@ -112,7 +110,6 @@ public static class KeyboardControlExtensions
     /// <param name="alt">Alt modifier.</param>
     /// <param name="shift">Shift modifier.</param>
     /// <param name="meta">Meta-key (Windows, Command) modifier.</param>
-    /// <returns>Asynchronous task completed when key is released.</returns>
     public static void TypeKey(
         this Node node,
         Key key,
