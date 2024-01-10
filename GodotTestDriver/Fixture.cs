@@ -43,7 +43,6 @@ public class Fixture
     /// fixture's <see cref="Cleanup" /> method is called. Note that it will _not_ be freed.</param>
     public async Task<T> AddToRoot<T>(T node, bool autoRemoveFromRoot = true) where T : Node
     {
-        await Tree.NextFrame();
         Tree.Root.AddChild(node);
 
         if (autoRemoveFromRoot)
@@ -57,7 +56,7 @@ public class Fixture
             });
         }
 
-        await Tree.WaitForEvents(); // make sure _Ready is called.
+        await Tree.NextFrame(); // make sure _Ready is called.
         return node;
     }
 
