@@ -1,9 +1,7 @@
 namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -38,7 +36,7 @@ public class TextEditDriver<T> : ControlDriver<T> where T : TextEdit
     /// <param name="text">Text to input.</param>
     /// <returns>Task that completes when the input finishes.</returns>
     /// <exception cref="InvalidOperationException" />
-    public async Task Type(string text)
+    public void Type(string text)
     {
         if (ReadOnly)
         {
@@ -47,11 +45,9 @@ public class TextEditDriver<T> : ControlDriver<T> where T : TextEdit
         }
 
         var edit = VisibleRoot;
-        await edit.GetTree().NextFrame();
         ClickCenter();
         edit.Text = text;
         edit.EmitSignal(TextEdit.SignalName.TextChanged, text);
-        await edit.GetTree().WaitForEvents();
     }
 }
 
