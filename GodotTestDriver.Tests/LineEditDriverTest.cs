@@ -1,7 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Tests;
 
 using System;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -17,23 +16,23 @@ public class LineEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task TextChanges()
+    public void TextChanges()
     {
         // WHEN
         // i type "hello" into the line edit
-        await _lineEdit.Type("hello");
+        _lineEdit.Type("hello");
         // THEN
         // the text changes
         _lineEdit.Text.ShouldBe("hello");
     }
 
     [Test]
-    public async Task SubmittingTextSendsSignal()
+    public void SubmittingTextSendsSignal()
     {
         var awaiter = _lineEdit.GetSignalAwaiter(LineEdit.SignalName.TextSubmitted);
         // WHEN
         // i type "hello" into the line edit and press enter
-        await _lineEdit.Submit("hello");
+        _lineEdit.Submit("hello");
         // THEN
         // the text changes
         _lineEdit.Text.ShouldBe("hello");
@@ -42,7 +41,7 @@ public class LineEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task DisabledLineEditCannotBeEdited()
+    public void DisabledLineEditCannotBeEdited()
     {
         // SETUP
         _lineEdit.PresentRoot.Editable = false;
@@ -51,11 +50,11 @@ public class LineEditDriverTest : DriverTest
         // i try to type into the disabled line edit
         // THEN
         // an exception is thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _lineEdit.Type("hello"));
+        Should.Throw<InvalidOperationException>(() => _lineEdit.Type("hello"));
     }
 
     [Test]
-    public async Task DisabledLineEditCannotBeSubmitted()
+    public void DisabledLineEditCannotBeSubmitted()
     {
         // SETUP
         _lineEdit.PresentRoot.Editable = false;
@@ -64,11 +63,11 @@ public class LineEditDriverTest : DriverTest
         // i try to submit text into the disabled line edit
         // THEN
         // an exception is thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _lineEdit.Submit("hello"));
+        Should.Throw<InvalidOperationException>(() => _lineEdit.Submit("hello"));
     }
 
     [Test]
-    public async Task InvisibleLineEditCannotBeEdited()
+    public void InvisibleLineEditCannotBeEdited()
     {
         // SETUP
         _lineEdit.PresentRoot.Visible = false;
@@ -77,11 +76,11 @@ public class LineEditDriverTest : DriverTest
         // i try to type into the invisible line edit
         // THEN
         // an exception is thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _lineEdit.Type("hello"));
+        Should.Throw<InvalidOperationException>(() => _lineEdit.Type("hello"));
     }
 
     [Test]
-    public async Task InvisibleLineEditCannotBeSubmitted()
+    public void InvisibleLineEditCannotBeSubmitted()
     {
         // SETUP
         _lineEdit.PresentRoot.Visible = false;
@@ -90,6 +89,6 @@ public class LineEditDriverTest : DriverTest
         // i try to submit text into the invisible line edit
         // THEN
         // an exception is thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _lineEdit.Submit("hello"));
+        Should.Throw<InvalidOperationException>(() => _lineEdit.Submit("hello"));
     }
 }
