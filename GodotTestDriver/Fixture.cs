@@ -73,7 +73,7 @@ public class Fixture
     /// <paramref name="autoFree"/> is also set to true.</param>
     public async Task<T> LoadAndAddScene<T>(string path, bool autoFree = true, bool autoRemoveFromRoot = true) where T : Node
     {
-        var instance = await LoadScene<T>(path, autoFree);
+        var instance = LoadScene<T>(path, autoFree);
         return await AddToRoot(instance, !autoFree && autoRemoveFromRoot);
     }
 
@@ -88,7 +88,7 @@ public class Fixture
     /// <paramref name="autoFree"/> is also set to true.</param>
     public async Task<T> LoadAndAddScene<T>(bool autoFree = true, bool autoRemoveFromRoot = true) where T : Node
     {
-        var instance = await LoadScene<T>(autoFree);
+        var instance = LoadScene<T>(autoFree);
         return await AddToRoot(instance, !autoFree && autoRemoveFromRoot);
     }
 
@@ -102,17 +102,15 @@ public class Fixture
     /// <returns>Instantiated scene.</returns>
     /// <exception cref="InvalidOperationException">Thrown when type does not have a
     /// <see cref="ScriptPathAttribute" />.</exception>
-    public async Task<T> LoadScene<T>(bool autoFree = true) where T : Node
+    public T LoadScene<T>(bool autoFree = true) where T : Node
     {
-        // make sure we run in the main thread
-        await Tree.NextFrame();
         // get script path given to a class by the Godot source generators.
         var attr = typeof(T).GetCustomAttribute<ScriptPathAttribute>()
             ?? throw new InvalidOperationException(
                 $"Type '{typeof(T)}' does not have a ScriptPathAttribute"
             );
         var path = Path.ChangeExtension(attr.Path, ".tscn");
-        return await LoadScene<T>(path, autoFree);
+        return LoadScene<T>(path, autoFree);
     }
 
     /// <summary>
@@ -123,11 +121,8 @@ public class Fixture
     /// <param name="autoFree">if set to true, the instance will be automatically freed when the fixture's
     /// <see cref="Cleanup" /> method is called</param>
     /// <exception cref="ArgumentException"></exception>
-    public async Task<T> LoadScene<T>(string path, bool autoFree = true) where T : Node
+    public T LoadScene<T>(string path, bool autoFree = true) where T : Node
     {
-        // make sure we run in the main thread
-        await Tree.NextFrame();
-
         var scene = GD.Load<PackedScene>(path);
         if (!Object.IsInstanceValid(scene))
         {
