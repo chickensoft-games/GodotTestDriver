@@ -2,9 +2,7 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -109,15 +107,13 @@ public class OptionButtonDriver<T> : BaseButtonDriver<T> where T : OptionButton
     /// Selects an item with the given text.
     /// </summary>
     /// <param name="text">Option label.</param>
-    public async Task SelectItemWithText(string text)
+    public void SelectItemWithText(string text)
     {
         var uiControl = VisibleRoot;
-        await uiControl.GetTree().NextFrame();
         var index = IndexOf(text);
         uiControl.Select(index);
         // calling this function will not emit the signal so we need to do this ourselves
         uiControl.EmitSignal(OptionButton.SignalName.ItemSelected, index);
-        await uiControl.GetTree().WaitForEvents();
     }
 
     /// <summary>
@@ -125,10 +121,9 @@ public class OptionButtonDriver<T> : BaseButtonDriver<T> where T : OptionButton
     /// </summary>
     /// <param name="id">Option id.</param>
     /// <exception cref="InvalidOperationException" />
-    public async Task SelectItemWithId(int id)
+    public void SelectItemWithId(int id)
     {
         var uiControl = VisibleRoot;
-        await uiControl.GetTree().NextFrame();
 
         for (var i = 0; i < uiControl.ItemCount; i++)
         {
@@ -145,7 +140,6 @@ public class OptionButtonDriver<T> : BaseButtonDriver<T> where T : OptionButton
             uiControl.Select(i);
             // calling this function will not emit the signal so we need to do this ourselves
             uiControl.EmitSignal(OptionButton.SignalName.ItemSelected, i);
-            await uiControl.GetTree().WaitForEvents();
             return;
         }
 
