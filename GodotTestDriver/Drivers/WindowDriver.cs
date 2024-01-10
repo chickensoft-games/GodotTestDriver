@@ -54,7 +54,7 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
     }
 
     /// <summary>
-    /// Closes the window by clicking the close button.
+    /// Closes the window.
     /// </summary>
     public void Close()
     {
