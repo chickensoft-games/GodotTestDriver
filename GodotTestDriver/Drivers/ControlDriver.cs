@@ -66,22 +66,18 @@ public class ControlDriver<T> : CanvasItemDriver<T> where T : Control
     /// <summary>
     /// Instructs the control to release the focus.
     /// </summary>
-    public async Task ReleaseFocus()
+    public void ReleaseFocus()
     {
         var control = VisibleRoot;
-        await control.GetTree().NextFrame();
         control.ReleaseFocus();
-        await control.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Instructs the control to grab the focus.
     /// </summary>
-    public async Task GrabFocus()
+    public void GrabFocus()
     {
         var control = VisibleRoot;
-        await control.GetTree().NextFrame();
         control.GrabFocus();
-        await control.GetTree().WaitForEvents();
     }
 }
