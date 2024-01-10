@@ -60,59 +60,61 @@ class MyTest {
     Fixture fixture;
     Player player;
     Arena arena;
-    
+
     // This is a setup method. The exact way of how stuff is set up
     // differs from framework to framework, but most have a setup
     // method.
     async Task Setup() {
         // Create a new Fixture instance.
         fixture = new Fixture(tree);
-        
+
         // load the arena scene. It will be automatically
         // disposed of when the fixture is disposed.
         arena = await fixture.LoadAndAddScene<Arena>("res://arena.tscn");
-        
+
         // load the player. it also will be automatically disposed.
-        player = await fixture.LoadScene<Player>("res://player.tscn");
-        
+        player = fixture.LoadScene<Player>("res://player.tscn");
+
         // add the player to the arena.
         arena.AddChild(player);
     }
-    
- 
+
+
     async Task TestBattle() {
         // load a monster. again, it will be automatically disposed.
         var monster = fixture.LoadScene<Monster>("res://monster.tscn");
-        
+
         // add the monster to the arena
         arena.AddChild(monster);
-        
+
         // create a weapon on the fly without loading a scene.
         // We call fixture.AutoFree to schedule this object for
         // deletion when the fixture is cleaned up.
         var weapon = fixture.AutoFree(new Weapon());
-        
+
         // add the weapon to the player.
         arena.AddChild(weapon);
-        
-        
+
+
         // run the actual tests.
         ....
     }
-    
+
     // You can also add custom cleanup steps to the fixture while
     // the test is running. These will be performed after the
     // test is done. This is very useful for cleaning up stuff
     // that is created during the tests.
     async Task TestSaving() {
-        ... 
+        ...
         // save the game
-        await GameDialog.SaveButton.Click();
-        
+        GameDialog.SaveButton.Click();
+
+        // await file operations here
+
         // instruct the fixture to delete our savegame in the
         // cleanup phase.
         fixture.AddCleanupStep(() => File.Delete("user://savegame.dat"));
-                
+
         // assert that the game was saved
         Assert.That(File.Exists("user://savegame.dat"));
 
@@ -120,8 +122,8 @@ class MyTest {
         // when the test is done, the fixture will run your custom
         // cleanup step (e.g. delete the save game in this case)
     }
-    
-    
+
+
     // This is a cleanup method. Like the setup method, the exact
     // way of how stuff is cleaned up differs from framework to
     // framework, but most have a cleanup method.
@@ -140,7 +142,7 @@ If you have many scenes in your project, it may become cumbersome to hard-code s
 To solve this, you can make your scenes follow a naming convention. For example, say the root node of your `Player/Player.tscn` scene is the  `Player` node which has its script stored in `Player/Player.cs`.  You can then simply load the scene like this:
 
 ```cs
-var player = await fixture.LoadScene<Player>();
+var player = fixture.LoadScene<Player>();
 ```
 
 For this to work, it is important that the scene file and the script file have the same name, same spelling and casing and must reside in the same directory. The only difference must be the file extension - `.tscn` for the scene file and `.cs` for the script file.
@@ -161,10 +163,10 @@ How exactly this node is produced depends on your game and test setup. Lets say 
 class MyTest {
 
     ButtonDriver buttonDriver;
-    
+
     async Task Setup() {
         buttonDriver = new ButtonDriver(() => GetTree().GetNodeOrNull<Button>("UI/MyButton"));
-        
+
         // ... more setup here
     }
 }
@@ -178,13 +180,13 @@ After you have created the test driver you can use it in your tests:
 
 ```csharp
 
-async Task TestButtonDisappearsWhenClicked() {
+void TestButtonDisappearsWhenClicked() {
     // when
     // will click the button in its center. This will actually
     // move the mouse set a click and trigger all the events of a
     // proper button click.
-    await buttonDriver.ClickCenter();
-    
+    buttonDriver.ClickCenter();
+
     // then
     // the button should be present but invisible.
     Assert.That(button.Visible).IsFalse();
@@ -205,16 +207,16 @@ You can write a custom driver that represents this dialog to your tests:
 // the root of the dialog would be a panel container.
 class ConfirmationDialogDriver : ControlDriver<PanelContainer> {
 
-    // we have a label and three buttons 
+    // we have a label and three buttons
     public LabelDriver Label { get; }
     public ButtonDriver YesButton { get; }
     public ButtonDriver NoButton { get; }
     public ButtonDriver CancelButton { get; }
-    
+
     public ConfirmationDialogDriver(Func<PanelContainer> producer) : base(producer) {
         // for each of the elements we create a new driver, that
         // uses a producer fetching the respective node from below
-        // our own root node. 
+        // our own root node.
 
         // Root is a built-in property of the driver base class,
         // which will run the producer function to get the root node.
@@ -237,11 +239,11 @@ async Task Setup() {
 }
 
 
-async Task ClickingYesClosesTheDialog() {
+void ClickingYesClosesTheDialog() {
     // when
     // we click the yes button.
-    await dialogDriver.YesButton.ClickCenter();
-    
+    dialogDriver.YesButton.ClickCenter();
+
     // then
     // the dialog should be gone.
     Assert.That(dialogDriver.Visible).IsFalse();
@@ -274,6 +276,11 @@ Note that because of the way drivers are implemented `dialogDriver.YesButton` wi
 
 ## Input
 
+GodotTestDriver provides a number of extension methods that allow you to simulate user input.
+
+> [!NOTE]
+> With the exception of methods that require time to elapse (e.g., `Node::HoldActionFor()`), these functions do not wait for additional frames to elapse. When you need additional frames to handle input, GodotTestDriver provides waiting extensions, described below.
+
 ### Simulating mouse input
 
 GodotTest provides a number of extension functions on `Viewport` that allow you to simulate mouse input in a viewport.
@@ -281,28 +288,26 @@ GodotTest provides a number of extension functions on `Viewport` that allow you 
 ```csharp
 
 // you can move the mouse to a certain position (e.g. for simulating a hover)
-await viewport.MoveMouseTo(new Vector2(100, 100));
+viewport.MoveMouseTo(new Vector2(100, 100));
 
 // you can click at a certain position (default is left mouse button)
-await viewport.ClickMouseAt(new Vector2(100, 100));
+viewport.ClickMouseAt(new Vector2(100, 100));
 
 // you can give a ButtonList argument to click with a different mouse button
-await viewport.ClickMouseAt(new Vector2(100, 100), ButtonList.Right);
+viewport.ClickMouseAt(new Vector2(100, 100), ButtonList.Right);
 
 // you can also send single mouse presses and releases
-await viewport.PressMouse();
-await viewport.ReleaseMouse();
+viewport.PressMouse();
+viewport.ReleaseMouse();
 
 // there is also built-in support for mouse dragging
-// this will press the mouse at the first point, then move it to the 
+// this will press the mouse at the first point, then move it to the
 // second point and release it there.
-await viewport.DragMouse(new Vector2(100, 100), new Vector2(400, 400));
+viewport.DragMouse(new Vector2(100, 100), new Vector2(400, 400));
 
 // again you can give a ButtonList argument to drag with a different mouse button
-await viewport.DragMouse(new Vector2(100, 100), new Vector2(400, 400), ButtonList.Right);
+viewport.DragMouse(new Vector2(100, 100), new Vector2(400, 400), ButtonList.Right);
 ```
-
-All functions will wait until the events have been properly processed.
 
 ### Simulating keyboard input
 
@@ -311,20 +316,18 @@ GodotTest provides a number of extension functions on `SceneTree`/`Node` that al
 ```csharp
 
 // you can press down a key
-await node.PressKey(KeyList.A);
+node.PressKey(KeyList.A);
 // you can also specify modifiers (e.g. shift+F1)
-await node.PressKey(KeyList.F1, shift: true);
+node.PressKey(KeyList.F1, shift: true);
 // you can also specify multiple modifiers (e.g. ctrl+shift+F1)
-await node.PressKey(KeyList.F1, control: true, shift: true);
+node.PressKey(KeyList.F1, control: true, shift: true);
 
 // you can release a key
-await node.ReleaseKey(KeyList.A);
+node.ReleaseKey(KeyList.A);
 
 // you can also combine pressing and releasing a key
-await node.TypeKey(KeyList.A);
+node.TypeKey(KeyList.A);
 ```
-
-All functions will wait until the events have been properly processed.
 
 ### Simulating other actions
 
@@ -332,9 +335,9 @@ Since version 2.1.0 you can now also simulate actions like this:
 
 ```csharp
 // start the jump action
-await node.StartAction("jump"); 
+node.StartAction("jump");
 // end the jump action
-await node.EndAction("jump");
+node.EndAction("jump");
 
 // hold an action pressed for 1 second
 await node.HoldActionFor(1.0f, "jump");
@@ -377,27 +380,27 @@ public async Task TestCombat() {
     // the monster will attack the player.
     await GetTree().WithinSeconds(5, () => {
         // this assertion will be repeatedly run every frame
-        // until it either succeeds or the 5 seconds have elapsed  
+        // until it either succeeds or the 5 seconds have elapsed
         Assert.True(arena.Player.IsDead);
     });
 }
 
-// you can also check for a condition to stay true for a 
+// you can also check for a condition to stay true for a
 // certain amount of time
 public async Task TestGodMode() {
     // setup
     // give god mode to the player
-    arena.Player.EnableGodMode();    
+    arena.Player.EnableGodMode();
 
     // when
     // i open the arena gates
     arena.OpenGates();
 
     // then
-    // the player will not lose any health within the next 5 seconds 
+    // the player will not lose any health within the next 5 seconds
     await GetTree().DuringSeconds(5, () => {
         // this assertion will be repeatedly run every frame
-        // until it either fails or the 5 seconds have elapsed  
+        // until it either fails or the 5 seconds have elapsed
         Assert.Equal(arenaDriver.Player.MaxHealth, arenaDriver.Player.Health);
     });
 }
@@ -407,8 +410,6 @@ public async Task TestGodMode() {
 ### Writing Your Own Drivers
 
 - All calls should succeed if the controlled object is in a suitable state to perform the requested operation. Otherwise, these calls should throw an `InvalidOperationException`. For example if you use a `ButtonDriver` and the button is not currently visible when you try to click it, the driver will throw an `InvalidOperationException`.
-- Calls that potentially modify state should typically be executed in the `Process` phase. You can use the `await GetTree().ProcessFrame()` extension function that is provided by this library to wait for the process phase.
-- Calls that raise events might need to wait for at least two process frames before they return. This is to ensure that the event has been properly processed before the call returns. This way you don't need to litter your tests with code that waits for a few frames. You can use the `await GetTree().WaitForEvents()` extension function that is provided by this library to wait for the events to be processed.
 - Producer functions should never throw an exception. If they cannot find the node, they should just return `null`.
 
 [GoDotTest]: https://github.com/chickensoft-games/GoDotTest
