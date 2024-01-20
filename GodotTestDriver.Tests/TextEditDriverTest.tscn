@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dworisxq0kj3r"]
+
+[node name="TextEditDriverTest" type="Node2D"]
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 517.0
+offset_top = 268.0
+offset_right = 820.0
+offset_bottom = 418.0
+text = "Lorem ipsum"

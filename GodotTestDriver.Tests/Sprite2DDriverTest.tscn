@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4h68q1tnthl8"]
+
+[ext_resource type="Texture2D" uid="uid://da2tcc2mhkfgi" path="res://icon.svg" id="1_00i83"]
+
+[node name="Sprite2DDriverTest" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(536, 270)
+texture = ExtResource("1_00i83")
+flip_v = true
+
+[node name="PartiallyVisibleSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 641)
+texture = ExtResource("1_00i83")
+flip_h = true

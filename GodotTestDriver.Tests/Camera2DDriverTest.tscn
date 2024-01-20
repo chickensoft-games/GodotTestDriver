@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv7ckjksq1etn"]
+
+[ext_resource type="Texture2D" uid="uid://da2tcc2mhkfgi" path="res://icon.svg" id="1_3y0um"]
+
+[node name="Camera2DDriverTest" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="CenterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_3y0um")
+
+[node name="OffCenterSprite" type="Sprite2D" parent="."]
+position = Vector2(776, 457)
+texture = ExtResource("1_3y0um")

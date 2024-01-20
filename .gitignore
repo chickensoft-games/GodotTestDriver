@@ -1,0 +1,16 @@
+GodotTestDriver/nupkg/
+
+GodotTestDriver.Tests/coverage/*
+!GodotTestDriver.Tests/coverage/.gdignore
+
+**/.godot/
+**/.import/
+bin/
+obj/
+.generated/
+.DS_Store
+
+# IDEs
+**/.idea
+.vs/
+.vscode/extensions.json

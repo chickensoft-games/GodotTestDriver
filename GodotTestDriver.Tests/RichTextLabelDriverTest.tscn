@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c3virdkgqd06g"]
+
+[node name="RichTextLabelDriverTest" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 140.0
+offset_top = 120.0
+offset_right = 443.0
+offset_bottom = 269.0
+text = "Hello World!"
+
+[node name="BbCodeRichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 589.0
+offset_top = 229.0
+offset_right = 892.0
+offset_bottom = 378.0
+bbcode_enabled = true
+text = "Hello [b]World![/b]"

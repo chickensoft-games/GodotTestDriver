@@ -1,0 +1,33 @@
+<Project Sdk="Godot.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <LangVersion>preview</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <OutputPath>./nupkg</OutputPath>
+    <DebugType>portable</DebugType>
+    <Nullable>enable</Nullable>
+
+    <Title>GodotTestDriver</Title>
+    <Description>This library provides an API that simplifies writing integration tests for Godot projects.</Description>
+    <Copyright>(C) 2022-2024 Jan Thomä and Chickensoft</Copyright>
+
+    <PackageVersion>0.0.0-devbuild</PackageVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>GodotTestDriver release.</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/chickensoft-games/GodotTestDriver</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/chickensoft-games/GodotTestDriver.git</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\" />
+    <None Include="../LICENSE" Pack="true" PackagePath="\" />
+    <None Include="./icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+</Project>

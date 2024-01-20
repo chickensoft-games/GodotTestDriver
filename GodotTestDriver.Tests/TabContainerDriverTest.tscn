@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://be50rnvsdsler"]
+
+[node name="TabContainerDriverTest" type="Node2D"]
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_left = 314.0
+offset_top = 208.0
+offset_right = 758.0
+offset_bottom = 454.0
+
+[node name="First Tab" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="First Tab Content" type="Label" parent="TabContainer/First Tab"]
+layout_mode = 2
+text = "First Tab Content"
+
+[node name="Second Tab" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Second Tab Content" type="Label" parent="TabContainer/Second Tab"]
+layout_mode = 2
+text = "Second Tab Content"

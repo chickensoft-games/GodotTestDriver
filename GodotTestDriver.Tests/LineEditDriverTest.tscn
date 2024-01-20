@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d1sy0we7k2jcd"]
+
+[node name="LineEditDriverTest" type="Node2D"]
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 104.0
+offset_top = 51.0
+offset_right = 350.0
+offset_bottom = 97.0

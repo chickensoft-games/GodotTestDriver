@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cmigiji403pdc"]
+
+[node name="PopupMenuDriverTest" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 247.0
+offset_top = 279.0
+offset_right = 403.0
+offset_bottom = 339.0
+text = "Show me the popup"
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+position = Vector2i(400, 300)
+size = Vector2i(152, 116)
+item_count = 4
+item_0/text = "Normal Item 1"
+item_0/id = 0
+item_1/text = "Normal Item 2"
+item_1/checkable = 1
+item_1/checked = true
+item_1/id = 1
+item_2/text = "Separator"
+item_2/id = 2
+item_2/separator = true
+item_3/text = "Disabled Item"
+item_3/id = 3
+item_3/disabled = true
+
+[connection signal="pressed" from="Button" to="PopupMenu" method="popup"]

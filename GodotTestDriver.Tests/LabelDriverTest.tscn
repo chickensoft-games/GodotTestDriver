@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dvrsoja7h1mm2"]
+
+[node name="LabelDriverTest" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 193.0
+offset_top = 144.0
+offset_right = 517.0
+offset_bottom = 179.0
+text = "Hello World!"

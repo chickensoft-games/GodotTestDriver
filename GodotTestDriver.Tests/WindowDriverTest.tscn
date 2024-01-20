@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bibyxgo1h087j"]
+
+[sub_resource type="GDScript" id="GDScript_hsdjn"]
+resource_name = "WindowDriverTestScript"
+script/source = "extends Window
+
+func _on_close_requested():
+	hide()
+"
+
+[node name="WindowDriverTest" type="Node2D"]
+
+[node name="Window" type="Window" parent="."]
+title = "I am some window"
+position = Vector2i(200, 200)
+size = Vector2i(400, 300)
+script = SubResource("GDScript_hsdjn")
+
+[node name="PanelContainer" type="PanelContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Window/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/PanelContainer/CenterContainer"]
+layout_mode = 2
+text = "Lorem ipsum dolor"
+
+[connection signal="close_requested" from="Window" to="Window" method="_on_close_requested"]

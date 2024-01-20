@@ -1,0 +1,25 @@
+<Project Sdk="Godot.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <LangVersion>10.0</LangVersion>
+    <RootNamespace>GodotTestDriver.Tests</RootNamespace>
+    <!-- Required for some nuget packages to work -->
+    <!-- godotengine/godot/issues/42271#issuecomment-751423827 -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- To show generated files -->
+    <!--
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>
+        .generated
+        </CompilerGeneratedFilesOutputPath>
+        -->
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Chickensoft.GoDotTest" Version="1.1.10" />
+    <PackageReference Include="Shouldly" Version="4.2.1" />
+    <ProjectReference Include="../GodotTestDriver/GodotTestDriver.csproj" />
+  </ItemGroup>
+</Project>

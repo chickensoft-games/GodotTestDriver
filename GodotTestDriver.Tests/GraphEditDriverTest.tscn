@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqu3gtnaysjxj"]
+
+[sub_resource type="GDScript" id="GDScript_bjxs1"]
+resource_name = "GraphEditTestScript"
+script/source = "extends GraphEdit
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+func _on_connection_request(from_node, from_port, to_node, to_port):
+	connect_node(from_node, from_port, to_node, to_port)
+
+
+func _on_disconnection_request(from_node, from_port, to_node, to_port):
+	disconnect_node(from_node, from_port, to_node, to_port)
+"
+
+[node name="GraphEditDriverTest" type="Node"]
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+right_disconnects = true
+script = SubResource("GDScript_bjxs1")
+
+[node name="Node1" type="GraphNode" parent="GraphEdit"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 194.0
+offset_right = 360.0
+offset_bottom = 320.0
+mouse_filter = 1
+title = "I am Node 1"
+position_offset = Vector2(231, 194)
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Label" type="Label" parent="GraphEdit/Node1"]
+layout_mode = 2
+text = "Lorem"
+
+[node name="Node2" type="GraphNode" parent="GraphEdit"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 169.0
+offset_right = 850.0
+offset_bottom = 295.0
+mouse_filter = 1
+title = "I am Node 2"
+position_offset = Vector2(721, 169)
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Label" type="Label" parent="GraphEdit/Node2"]
+layout_mode = 2
+text = "Ipsum"
+
+[connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]

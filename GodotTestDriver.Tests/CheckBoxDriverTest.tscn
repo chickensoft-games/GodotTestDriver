@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c0dcedt5pjata"]
+
+[node name="CheckBoxDriverTest" type="Node2D"]
+
+[node name="CheckBox" type="CheckBox" parent="."]
+offset_left = 213.0
+offset_top = 153.0
+offset_right = 467.0
+offset_bottom = 199.0
+text = "I am a checkbox"

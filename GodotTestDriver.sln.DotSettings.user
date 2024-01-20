@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\.nuget\packages\godot.sourcegenerators\4.0.0-beta.16" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\.nuget\packages\godot.sourcegenerators\4.0.0-beta.17" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\.nuget\packages\godot.sourcegenerators\4.0.0-beta.7" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\.nuget\packages\godot.sourcegenerators\4.0.0-beta.8" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\AppData\Roaming\Godot\mono\GodotNuGetFallbackFolder\godot.sourcegenerators\4.0.0" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\AppData\Roaming\Godot\mono\GodotNuGetFallbackFolder\godot.sourcegenerators\4.0.0-beta.10" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\AppData\Roaming\Godot\mono\GodotNuGetFallbackFolder\godot.sourcegenerators\4.0.0-beta.7" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\kork\AppData\Roaming\Godot\mono\GodotNuGetFallbackFolder\godot.sourcegenerators\4.0.0-beta.9" Loaded="True" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

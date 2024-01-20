@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b81ckv34wmjlc"]
+
+[node name="ItemListDriverTest" type="Node2D"]
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 324.0
+offset_top = 100.0
+offset_right = 604.0
+offset_bottom = 472.0
+select_mode = 1
+item_count = 4
+item_0/text = "Normal Item 1"
+item_1/text = "Normal Item 2"
+item_2/text = "NonSelectable Item"
+item_2/selectable = false
+item_3/text = "Disabled Item"
+item_3/selectable = false
+item_3/disabled = true
