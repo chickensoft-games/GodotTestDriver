@@ -41,7 +41,7 @@ jobs:
         run: |
           dotnet build GodotTestDriver/GodotTestDriver.csproj -c Release
           # find the built nuget package
-          nuget_package=$(find . -name "GodotTestDriver.*.nupkg")
+          nuget_package=$(find . -name "Chickensoft.GodotTestDriver.*.nupkg")
           echo "📦 Nuget package: $nuget_package"
           # publish the nuget package, with symbols
           dotnet nuget push "$nuget_package" --api-key ${{ secrets.NUGET_API_KEY }}  --source https://api.nuget.org/v3/index.json --skip-duplicate
