@@ -10,7 +10,7 @@
     <Nullable>enable</Nullable>
 
     <Title>GodotTestDriver</Title>
-    <Description>This library provides an API that simplifies writing integration tests for Godot projects.</Description>
+    <Description>Easy integration testing for Godot with simulated input, node drivers, and fixtures.</Description>
     <Copyright>(C) 2022-2024 Jan Thomä and Chickensoft</Copyright>
 
     <PackageId>Chickensoft.GodotTestDriver</PackageId>
