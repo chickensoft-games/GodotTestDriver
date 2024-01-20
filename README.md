@@ -1,5 +1,7 @@
 # Godot Test Driver
 
+[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs][read-the-docs-badge]][docs]
+
 This library provides an API that simplifies writing integration tests for Godot projects.
 
 - ✅ Decouple your integration tests from the implementation details of your Godot project.
@@ -410,3 +412,9 @@ public async Task TestGodMode() {
 - Producer functions should never throw an exception. If they cannot find the node, they should just return `null`.
 
 [GoDotTest]: https://github.com/chickensoft-games/GoDotTest
+[chickensoft-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/chickensoft_badge.svg
+[chickensoft-website]: https://chickensoft.games
+[discord-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/discord_badge.svg
+[discord]: https://discord.gg/gSjaPgMmYW
+[read-the-docs-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/read_the_docs_badge.svg
+[docs]: https://chickensoft.games/docs
