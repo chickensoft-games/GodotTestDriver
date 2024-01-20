@@ -13,6 +13,7 @@
     <Description>This library provides an API that simplifies writing integration tests for Godot projects.</Description>
     <Copyright>(C) 2022-2024 Jan Thomä and Chickensoft</Copyright>
 
+    <PackageId>Chickensoft.GodotTestDriver</PackageId>
     <PackageVersion>0.0.0-devbuild</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>GodotTestDriver release.</PackageReleaseNotes>
