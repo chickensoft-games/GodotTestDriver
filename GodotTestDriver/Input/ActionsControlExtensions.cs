@@ -43,7 +43,13 @@ public static class ActionsControlExtensions
         this Node node, string actionName, float strength = 1f
     )
     {
+        Input.ParseInputEvent(new InputEventAction
+        {
+            Action = actionName,
+            Pressed = true
+        });
         Input.ActionPress(actionName, strength);
+        Input.FlushBufferedEvents();
     }
 
     /// <summary>
@@ -55,7 +61,13 @@ public static class ActionsControlExtensions
     /// <returns>Task that completes when the input finishes.</returns>
     public static void EndAction(this Node node, string actionName)
     {
+        Input.ParseInputEvent(new InputEventAction
+        {
+            Action = actionName,
+            Pressed = false
+        });
         Input.ActionRelease(actionName);
+        Input.FlushBufferedEvents();
     }
 }
 
