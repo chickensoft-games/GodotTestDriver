@@ -1,17 +1,30 @@
-namespace GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
-using System;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Input;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 using Shouldly;
 
 [UsedImplicitly]
-public class ActionsControlExtensionsTest : DriverTest
+public partial class ActionsControlExtensionsTest : DriverTest
 {
+    private partial class ActionInputEventTestNode : Node
+    {
+        public bool HasInputEventFired { get; set; }
+        public bool WasInputPressed { get; set; }
+        public StringName InputEventName { get; set; } = string.Empty;
+
+        public override void _Input(InputEvent @event)
+        {
+            if (@event.IsAction(InputEventName))
+            {
+                HasInputEventFired = true;
+                WasInputPressed = @event.IsActionPressed(InputEventName);
+            }
+        }
+    }
+
     private const string TestAction = "test_action";
 
     public ActionsControlExtensionsTest(Node testScene) : base(testScene)
@@ -19,19 +32,52 @@ public class ActionsControlExtensionsTest : DriverTest
     }
 
     [Test]
-    public async Task StartActionSetsGlobalActionPressed()
+    public void StartActionSetsGlobalActionPressed()
     {
         Input.IsActionPressed(TestAction).ShouldBeFalse();
-        await RootNode.StartAction(TestAction);
+        RootNode.StartAction(TestAction);
         Input.IsActionPressed(TestAction).ShouldBeTrue();
-        await RootNode.EndAction(TestAction);
+        RootNode.EndAction(TestAction);
     }
 
     [Test]
-    public async Task EndActionUnsetsGlobalActionPressed()
+    public void EndActionUnsetsGlobalActionPressed()
     {
-        await RootNode.StartAction(TestAction);
-        await RootNode.EndAction(TestAction);
+        RootNode.StartAction(TestAction);
+        RootNode.EndAction(TestAction);
         Input.IsActionPressed(TestAction).ShouldBeFalse();
+    }
+
+    [Test]
+    public void StartActionSendsInputEvent()
+    {
+        var inputTestNode = new ActionInputEventTestNode
+        {
+            InputEventName = TestAction
+        };
+        RootNode.AddChild(inputTestNode);
+        inputTestNode.HasInputEventFired.ShouldBeFalse();
+        inputTestNode.StartAction(TestAction);
+        inputTestNode.HasInputEventFired.ShouldBeTrue();
+        inputTestNode.WasInputPressed.ShouldBeTrue();
+        inputTestNode.EndAction(TestAction);
+        RootNode.RemoveChild(inputTestNode); // Remove immediately since we won't wait a frame for the free
+        inputTestNode.QueueFree();
+    }
+
+    [Test]
+    public void EndActionSendsInputEvent()
+    {
+        var inputTestNode = new ActionInputEventTestNode
+        {
+            InputEventName = TestAction
+        };
+        RootNode.AddChild(inputTestNode);
+        inputTestNode.HasInputEventFired.ShouldBeFalse();
+        inputTestNode.EndAction(TestAction);
+        inputTestNode.HasInputEventFired.ShouldBeTrue();
+        inputTestNode.WasInputPressed.ShouldBeFalse();
+        RootNode.RemoveChild(inputTestNode); // Remove immediately since we won't wait a frame for the free
+        inputTestNode.QueueFree();
     }
 }
