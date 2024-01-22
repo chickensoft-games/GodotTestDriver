@@ -36,9 +36,7 @@ public static class ActionsControlExtensions
     /// </summary>
     /// <param name="node">Node to supply input to.</param>
     /// <param name="actionName">Name of the action.</param>
-    /// <param name="strength">Action strength (optional — default is 1.0).
-    /// </param>
-    /// <returns>Task that completes when the input finishes.</returns>
+    /// <param name="strength">Action strength (optional — default is 1.0).</param>
     public static void StartAction(
         this Node node, string actionName, float strength = 1f
     )
@@ -57,8 +55,6 @@ public static class ActionsControlExtensions
     /// </summary>
     /// <param name="node">Node to supply input to.</param>
     /// <param name="actionName">Name of the action.</param>
-
-    /// <returns>Task that completes when the input finishes.</returns>
     public static void EndAction(this Node node, string actionName)
     {
         Input.ParseInputEvent(new InputEventAction

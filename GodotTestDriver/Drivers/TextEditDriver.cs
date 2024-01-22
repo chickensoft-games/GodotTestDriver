@@ -34,7 +34,6 @@ public class TextEditDriver<T> : ControlDriver<T> where T : TextEdit
     /// Types the given text into the text edit. Existing text will be overwritten.
     /// </summary>
     /// <param name="text">Text to input.</param>
-    /// <returns>Task that completes when the input finishes.</returns>
     /// <exception cref="InvalidOperationException" />
     public void Type(string text)
     {

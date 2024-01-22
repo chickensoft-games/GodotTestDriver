@@ -55,7 +55,6 @@ public class BaseButtonDriver<T> : ControlDriver<T> where T : BaseButton
     /// Clicks the center of the button.
     /// </summary>
     /// <param name="button">Mouse button.</param>
-    /// <returns>Task that completes when the click finishes.</returns>
     /// <exception cref="InvalidOperationException" />
     public override void ClickCenter(MouseButton button = MouseButton.Left)
     {

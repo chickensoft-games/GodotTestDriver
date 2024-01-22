@@ -15,7 +15,6 @@ public static class MouseControlExtensions
     /// <param name="viewport">Viewport.</param>
     /// <param name="position">Position, in viewport coordinates.</param>
     /// <param name="button">Mouse button.</param>
-    /// <returns>Task that completes when the input finishes.</returns>
     public static void ClickMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
     {
         viewport.PressMouseAt(position, button);
@@ -27,7 +26,6 @@ public static class MouseControlExtensions
     /// </summary>
     /// <param name="viewport">Viewport.</param>
     /// <param name="position">Position, in viewport coordinates.</param>
-    /// <returns>Task that completes when the input finishes.</returns>
     public static void MoveMouseTo(this Viewport viewport, Vector2 position)
     {
         var oldPosition = viewport.GetMousePosition();
@@ -49,7 +47,6 @@ public static class MouseControlExtensions
     /// <param name="start">Start position, in viewport coordinates.</param>
     /// <param name="end">End position, in viewport coordinates.</param>
     /// <param name="button">Mouse button.</param>
-    /// <returns>Task that completes when the input finishes.</returns>
     public static void DragMouse(this Viewport viewport, Vector2 start, Vector2 end, MouseButton button = MouseButton.Left)
     {
         viewport.PressMouseAt(start, button);
@@ -61,7 +58,6 @@ public static class MouseControlExtensions
     /// </summary>
     /// <param name="_">Viewport.</param>
     /// <param name="button">Mouse button (left by default).</param>
-    /// <returns>Task that completes when the input finishes.</returns>
     public static void PressMouse(this Viewport _, MouseButton button = MouseButton.Left)
     {
         var action = new InputEventMouseButton
@@ -78,7 +74,6 @@ public static class MouseControlExtensions
     /// </summary>
     /// <param name="_">Viewport.</param>
     /// <param name="button">Mouse button (left by default).</param>
-    /// <returns>Task that completes when the input finishes.</returns>
     public static void ReleaseMouse(this Viewport _, MouseButton button = MouseButton.Left)
     {
         var action = new InputEventMouseButton
