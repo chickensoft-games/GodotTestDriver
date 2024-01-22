@@ -45,10 +45,10 @@ public class ControlDriver<T> : CanvasItemDriver<T> where T : Control
     /// Clicks the control with the mouse in the center.
     /// </summary>
     /// <param name="button">Mouse button.</param>
-    public virtual async Task ClickCenter(MouseButton button = MouseButton.Left)
+    public virtual void ClickCenter(MouseButton button = MouseButton.Left)
     {
         var control = VisibleRoot;
-        await control.GetViewport().ClickMouseAt(control.GetGlobalRect().Center(), button);
+        control.GetViewport().ClickMouseAt(control.GetGlobalRect().Center(), button);
     }
 
     /// <summary>
@@ -59,29 +59,25 @@ public class ControlDriver<T> : CanvasItemDriver<T> where T : Control
     public async Task Hover(float seconds)
     {
         var control = VisibleRoot;
-        await control.GetViewport().MoveMouseTo(control.GetGlobalRect().Center());
+        control.GetViewport().MoveMouseTo(control.GetGlobalRect().Center());
         await control.SleepSeconds(seconds);
     }
 
     /// <summary>
     /// Instructs the control to release the focus.
     /// </summary>
-    public async Task ReleaseFocus()
+    public void ReleaseFocus()
     {
         var control = VisibleRoot;
-        await control.GetTree().NextFrame();
         control.ReleaseFocus();
-        await control.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Instructs the control to grab the focus.
     /// </summary>
-    public async Task GrabFocus()
+    public void GrabFocus()
     {
         var control = VisibleRoot;
-        await control.GetTree().NextFrame();
         control.GrabFocus();
-        await control.GetTree().WaitForEvents();
     }
 }

@@ -14,15 +14,14 @@ public static class KeyboardControlExtensions
     /// <summary>
     /// Presses the given key with the given modifiers.
     /// </summary>
-    /// <param name="node">Node to perform input on.</param>
+    /// <param name="_">Node to perform input on.</param>
     /// <param name="key">Keyboard key.</param>
     /// <param name="control">Control modifier.</param>
     /// <param name="alt">Alt modifier.</param>
     /// <param name="shift">Shift modifier.</param>
     /// <param name="meta">Meta-key (Windows, Command) modifier.</param>
-    /// <returns>Asynchronous task completed when key is released.</returns>
-    public static async Task PressKey(
-        this Node node,
+    public static void PressKey(
+        this Node _,
         Key key,
         bool control = false,
         bool alt = false,
@@ -41,8 +40,7 @@ public static class KeyboardControlExtensions
         };
 
         Input.ParseInputEvent(inputEvent);
-
-        await node.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 
     /// <summary>
@@ -66,23 +64,22 @@ public static class KeyboardControlExtensions
         bool meta = false
     )
     {
-        await node.PressKey(key, control, alt, shift, meta);
+        node.PressKey(key, control, alt, shift, meta);
         await node.Wait(seconds);
-        await node.ReleaseKey(key, control, alt, shift, meta);
+        node.ReleaseKey(key, control, alt, shift, meta);
     }
 
     /// <summary>
     /// Releases the given key with the given modifier state.
     /// </summary>
-    /// <param name="node">Node to perform input on.</param>
+    /// <param name="_">Node to perform input on.</param>
     /// <param name="key">Keyboard key.</param>
     /// <param name="control">Control modifier.</param>
     /// <param name="alt">Alt modifier.</param>
     /// <param name="shift">Shift modifier.</param>
     /// <param name="meta">Meta-key (Windows, Command) modifier.</param>
-    /// <returns>Asynchronous task completed when key is released.</returns>
-    public static async Task ReleaseKey(
-        this Node node,
+    public static void ReleaseKey(
+        this Node _,
         Key key,
         bool control = false,
         bool alt = false,
@@ -101,8 +98,7 @@ public static class KeyboardControlExtensions
         };
 
         Input.ParseInputEvent(inputEvent);
-
-        await node.WaitForEvents();
+        Input.FlushBufferedEvents();
     }
 
     /// <summary>
@@ -114,8 +110,7 @@ public static class KeyboardControlExtensions
     /// <param name="alt">Alt modifier.</param>
     /// <param name="shift">Shift modifier.</param>
     /// <param name="meta">Meta-key (Windows, Command) modifier.</param>
-    /// <returns>Asynchronous task completed when key is released.</returns>
-    public static async Task TypeKey(
+    public static void TypeKey(
         this Node node,
         Key key,
         bool control = false,
@@ -124,7 +119,7 @@ public static class KeyboardControlExtensions
         bool meta = false
     )
     {
-        await node.PressKey(key, control, alt, shift, meta);
-        await node.ReleaseKey(key, control, alt, shift, meta);
+        node.PressKey(key, control, alt, shift, meta);
+        node.ReleaseKey(key, control, alt, shift, meta);
     }
 }

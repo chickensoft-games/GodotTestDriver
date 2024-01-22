@@ -1,9 +1,7 @@
 namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -41,7 +39,7 @@ public class BaseButtonDriver<T> : ControlDriver<T> where T : BaseButton
     ///  Simulates a button press by simply sending the press event.
     /// </summary>
     /// <exception cref="InvalidOperationException"/>
-    public async Task Press()
+    public void Press()
     {
         var button = VisibleRoot;
 
@@ -50,25 +48,21 @@ public class BaseButtonDriver<T> : ControlDriver<T> where T : BaseButton
             throw new InvalidOperationException(ErrorMessage("Button is disabled and cannot be pressed."));
         }
 
-        // make sure we run on main thread
-        await button.GetTree().NextFrame();
         button.EmitSignal(BaseButton.SignalName.Pressed);
-        await button.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Clicks the center of the button.
     /// </summary>
     /// <param name="button">Mouse button.</param>
-    /// <returns>Task that completes when the click finishes.</returns>
     /// <exception cref="InvalidOperationException" />
-    public override async Task ClickCenter(MouseButton button = MouseButton.Left)
+    public override void ClickCenter(MouseButton button = MouseButton.Left)
     {
         if (Disabled)
         {
             throw new InvalidOperationException(ErrorMessage("Button is disabled and cannot be pressed."));
         }
 
-        await base.ClickCenter(button);
+        base.ClickCenter(button);
     }
 }

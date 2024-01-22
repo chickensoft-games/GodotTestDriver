@@ -1,7 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Tests;
 
 using System;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -23,11 +22,11 @@ public class ButtonDriverTest : DriverTest
     }
 
     [Test]
-    public async Task ClickingWorks()
+    public void ClickingWorks()
     {
         // WHEN
         // i click the button
-        await _button.ClickCenter();
+        _button.ClickCenter();
         // the label text changes.
         _label.Text.ShouldBe("did work");
         // and the panel disappears
@@ -35,22 +34,22 @@ public class ButtonDriverTest : DriverTest
     }
 
     [Test]
-    public async Task ClickingDisabledButtonThrowsException()
+    public void ClickingDisabledButtonThrowsException()
     {
         // SETUP
         _button.PresentRoot.Disabled = true;
         // WHEN
         // i click the button then an exception is thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _button.ClickCenter());
+        Should.Throw<InvalidOperationException>(() => _button.ClickCenter());
     }
 
     [Test]
-    public async Task ClickingHiddenButtonThrowsException()
+    public void ClickingHiddenButtonThrowsException()
     {
         // SETUP
         _button.PresentRoot.Visible = false;
         // WHEN
         // i click the button then an exception is thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _button.ClickCenter());
+        Should.Throw<InvalidOperationException>(() => _button.ClickCenter());
     }
 }

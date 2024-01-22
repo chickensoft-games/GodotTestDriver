@@ -1,8 +1,7 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -33,12 +32,12 @@ public class OptionButtonDriverTest : DriverTest
     }
 
     [Test]
-    public async Task SelectingAnItemWorks()
+    public void SelectingAnItemWorks()
     {
         // WHEN
         // we select the first item
         var signalAwaiter = _optionButton.GetSignalAwaiter(OptionButton.SignalName.ItemSelected);
-        await _optionButton.SelectItemWithText("Normal Item 1");
+        _optionButton.SelectItemWithText("Normal Item 1");
 
         // THEN
         // the first item is selected
@@ -49,12 +48,12 @@ public class OptionButtonDriverTest : DriverTest
     }
 
     [Test]
-    public async Task SelectingANonExistingItemThrowsException()
+    public void SelectingANonExistingItemThrowsException()
     {
         // WHEN
         // we select a non-existing item
         var signalAwaiter = _optionButton.GetSignalAwaiter(OptionButton.SignalName.ItemSelected);
-        var exception = await Should.ThrowAsync<Exception>(async () => await _optionButton.SelectItemWithText("Non-existing Item"));
+        var exception = Should.Throw<Exception>(() => _optionButton.SelectItemWithText("Non-existing Item"));
 
         // THEN
         // the exception is thrown
@@ -65,12 +64,12 @@ public class OptionButtonDriverTest : DriverTest
     }
 
     [Test]
-    public async Task SelectingADisabledItemThrowsException()
+    public void SelectingADisabledItemThrowsException()
     {
         // WHEN
         // we select a disabled item
         var signalAwaiter = _optionButton.GetSignalAwaiter(OptionButton.SignalName.ItemSelected);
-        var exception = await Should.ThrowAsync<Exception>(async () => await _optionButton.SelectItemWithText("Disabled Item"));
+        var exception = Should.Throw<Exception>(() => _optionButton.SelectItemWithText("Disabled Item"));
 
         // THEN
         // the exception is thrown
@@ -81,12 +80,12 @@ public class OptionButtonDriverTest : DriverTest
     }
 
     [Test]
-    public async Task SelectingASeparatorThrowsException()
+    public void SelectingASeparatorThrowsException()
     {
         // WHEN
         // we select a separator
         var signalAwaiter = _optionButton.GetSignalAwaiter(OptionButton.SignalName.ItemSelected);
-        var exception = await Should.ThrowAsync<Exception>(async () => await _optionButton.SelectItemWithText("Separator"));
+        var exception = Should.Throw<Exception>(() => _optionButton.SelectItemWithText("Separator"));
 
         // THEN
         // the exception is thrown

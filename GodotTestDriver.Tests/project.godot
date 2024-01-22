@@ -19,6 +19,13 @@ config/icon="res://icon.svg"
 
 project/assembly_name="GodotTestDriver.Tests"
 
+[input]
+
+test_action={
+"deadzone": 0.5,
+"events": []
+}
+
 [rendering]
 
 renderer/rendering_method="mobile"

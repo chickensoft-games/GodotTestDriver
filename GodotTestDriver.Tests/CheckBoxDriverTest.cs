@@ -1,6 +1,5 @@
 ﻿namespace Chickensoft.GodotTestDriver.Tests;
 
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -18,11 +17,11 @@ public class CheckBoxDriverTest : DriverTest
     }
 
     [Test]
-    public async Task ClickingChecksAndUnchecks()
+    public void ClickingChecksAndUnchecks()
     {
         // WHEN
         // i click the checkbox
-        await _checkBox.ClickCenter();
+        _checkBox.ClickCenter();
 
         // THEN
         // the checkbox is checked
@@ -30,7 +29,7 @@ public class CheckBoxDriverTest : DriverTest
 
         // WHEN
         // i click the checkbox again
-        await _checkBox.ClickCenter();
+        _checkBox.ClickCenter();
 
         // THEN
         // the checkbox is unchecked

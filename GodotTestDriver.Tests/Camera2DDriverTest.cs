@@ -1,4 +1,3 @@
-﻿
 namespace Chickensoft.GodotTestDriver.Tests;
 
 using System.Threading.Tasks;
@@ -37,10 +36,13 @@ public class Camera2DDriverTest : DriverTest
     {
         // WHEN
         // I move camera to off-center sprite
-        await _camera2D.MoveIntoView(_offCenterSprite.GlobalPosition, 2);
+        var moveTask = _camera2D.MoveIntoView(_offCenterSprite.GlobalPosition, 2);
 
         // THEN
-        //  the off center sprite is not visible
+        //  the camera has successfully moved to the new position
+        (await moveTask).ShouldBeTrue();
+
+        //  and off center sprite is visible
         _offCenterSprite.IsFullyInView.ShouldBeTrue();
     }
 }

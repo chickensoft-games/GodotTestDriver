@@ -23,6 +23,18 @@ public class Camera2DDriver<T> : Node2DDriver<T> where T : Camera2D
     }
 
     /// <summary>
+    /// Starts moving the given position into the view of the camera. This does NOT wait for the camera to
+    /// finish moving.
+    /// </summary>
+    /// <param name="worldPosition">World position to move into view.</param>
+    /// <seealso cref="MoveIntoView(Vector2, float)"/>
+    /// <seealso cref="WaitUntilSteady(float)"/>
+    public void StartMoveIntoView(Vector2 worldPosition)
+    {
+        PresentRoot.GlobalPosition = worldPosition;
+    }
+
+    /// <summary>
     /// Moves the given position into the view of the camera. This will wait for the given amount of seconds
     /// until the camera no longer moves.
     /// </summary>
@@ -30,7 +42,7 @@ public class Camera2DDriver<T> : Node2DDriver<T> where T : Camera2D
     /// <param name="timeoutSeconds">Timeout, in seconds.</param>
     public async Task<bool> MoveIntoView(Vector2 worldPosition, float timeoutSeconds)
     {
-        PresentRoot.GlobalPosition = worldPosition;
+        StartMoveIntoView(worldPosition);
         return await WaitUntilSteady(timeoutSeconds);
     }
 

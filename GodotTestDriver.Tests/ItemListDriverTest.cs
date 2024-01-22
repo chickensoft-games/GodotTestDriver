@@ -1,8 +1,7 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -38,12 +37,12 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task SelectingItemsWorks()
+    public void SelectingItemsWorks()
     {
         // WHEN
         // we select the first item
         var signalAwaiter = _itemList.GetSignalAwaiter(ItemList.SignalName.ItemSelected);
-        await _itemList.SelectItemWithText("Normal Item 1");
+        _itemList.SelectItemWithText("Normal Item 1");
 
         // THEN
         // the first item is selected
@@ -56,7 +55,7 @@ public class ItemListDriverTest : DriverTest
         // WHEN
         // we select the second item
         var signalAwaiter2 = _itemList.GetSignalAwaiter(ItemList.SignalName.ItemSelected);
-        await _itemList.SelectItemWithText("Normal Item 2");
+        _itemList.SelectItemWithText("Normal Item 2");
 
         // THEN
         // the second item is selected
@@ -68,14 +67,14 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task MultiSelectionWorks()
+    public void MultiSelectionWorks()
     {
         // WHEN
         // we select the first item
-        await _itemList.SelectItemWithText("Normal Item 1");
+        _itemList.SelectItemWithText("Normal Item 1");
 
         // and adding the second item
-        await _itemList.SelectItemWithText("Normal Item 2", true);
+        _itemList.SelectItemWithText("Normal Item 2", true);
 
         // THEN
         // both items are selected
@@ -85,11 +84,11 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task MassSelectionWorks()
+    public void MassSelectionWorks()
     {
         // WHEN
         // we select all items
-        await _itemList.SelectItemsWithText("Normal Item 1", "Normal Item 2");
+        _itemList.SelectItemsWithText("Normal Item 1", "Normal Item 2");
 
         // THEN
         // both items are selected
@@ -99,14 +98,14 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task DeselectionWorks()
+    public void DeselectionWorks()
     {
         // WHEN
         // we select the first item
-        await _itemList.SelectItemWithText("Normal Item 1");
+        _itemList.SelectItemWithText("Normal Item 1");
 
         // and deselect it
-        await _itemList.DeselectItemWithText("Normal Item 1");
+        _itemList.DeselectItemWithText("Normal Item 1");
 
         // THEN
         // no items are selected
@@ -114,15 +113,15 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task MassDeselectionWorks()
+    public void MassDeselectionWorks()
     {
         // WHEN
         // we select the two items
-        await _itemList.SelectItemWithText("Normal Item 1");
-        await _itemList.SelectItemWithText("Normal Item 2", true);
+        _itemList.SelectItemWithText("Normal Item 1");
+        _itemList.SelectItemWithText("Normal Item 2", true);
 
         // and deselect all
-        await _itemList.DeselectAll();
+        _itemList.DeselectAll();
 
         // THEN
         // no items are selected
@@ -130,12 +129,12 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task ActivatingItemsWorks()
+    public void ActivatingItemsWorks()
     {
         // WHEN
         // we activate the first item
         var signalAwaiter = _itemList.GetSignalAwaiter(ItemList.SignalName.ItemActivated);
-        await _itemList.ActivateItemWithText("Normal Item 1");
+        _itemList.ActivateItemWithText("Normal Item 1");
 
         // THEN
         // the signal is emitted
@@ -143,26 +142,26 @@ public class ItemListDriverTest : DriverTest
     }
 
     [Test]
-    public async Task SelectingDisabledItemsDoesNotWork()
+    public void SelectingDisabledItemsDoesNotWork()
     {
         // WHEN
         // we try to select a disabled item, an InvalidOperationException should be thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _itemList.SelectItemWithText("Disabled Item"));
+        Should.Throw<InvalidOperationException>(() => _itemList.SelectItemWithText("Disabled Item"));
     }
 
     [Test]
-    public async Task SelectingNonExistingItemsDoesNotWork()
+    public void SelectingNonExistingItemsDoesNotWork()
     {
         // WHEN
         // we try to select a non-existing item, an InvalidOperationException should be thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _itemList.SelectItemWithText("Non-existing Item"));
+        Should.Throw<InvalidOperationException>(() => _itemList.SelectItemWithText("Non-existing Item"));
     }
 
     [Test]
-    public async Task SelectingUnselectableItemsDoesNotWork()
+    public void SelectingUnselectableItemsDoesNotWork()
     {
         // WHEN
         // we try to select an unselectable item, an InvalidOperationException should be thrown
-        await Should.ThrowAsync<InvalidOperationException>(async () => await _itemList.SelectItemWithText("NonSelectable Item"));
+        Should.Throw<InvalidOperationException>(() => _itemList.SelectItemWithText("NonSelectable Item"));
     }
 }

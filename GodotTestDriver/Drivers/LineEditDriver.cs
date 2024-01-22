@@ -1,9 +1,7 @@
 namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -37,7 +35,7 @@ public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
     /// </summary>
     /// <param name="text">Text contents.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task Type(string text)
+    public void Type(string text)
     {
         if (!Editable)
         {
@@ -45,11 +43,9 @@ public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
         }
 
         var edit = VisibleRoot;
-        await edit.GetTree().NextFrame();
-        await ClickCenter();
+        ClickCenter();
         edit.Text = text;
         edit.EmitSignal(LineEdit.SignalName.TextChanged, text);
-        await edit.GetTree().WaitForEvents();
     }
 
     /// <summary>
@@ -57,7 +53,7 @@ public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
     /// </summary>
     /// <param name="text">Text contents.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task Submit(string text)
+    public void Submit(string text)
     {
         if (!Editable)
         {
@@ -66,10 +62,9 @@ public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
 
         var edit = VisibleRoot;
         // first type the text, so the text change events are triggered
-        await Type(text);
+        Type(text);
         // then send the "TextSubmitted" event
         edit.EmitSignal(LineEdit.SignalName.TextSubmitted, text);
-        await edit.GetTree().WaitForEvents();
     }
 }
 

@@ -1,7 +1,6 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
 using System;
-using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
@@ -19,14 +18,14 @@ public class TextEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task TypingWorks()
+    public void TypingWorks()
     {
         // get the signal awaiter
         var signalAwaiter = _textEdit.GetSignalAwaiter(TextEdit.SignalName.TextChanged);
 
         // WHEN
         // i type "Hello World!" into the text edit
-        await _textEdit.Type("Hello World!");
+        _textEdit.Type("Hello World!");
 
         // THEN
         // the text edit text is "Hello World!"
@@ -37,7 +36,7 @@ public class TextEditDriverTest : DriverTest
     }
 
     [Test]
-    public async Task TypingThrowsExceptionIfNotEditable()
+    public void TypingThrowsExceptionIfNotEditable()
     {
         // GIVEN
         // the text edit is not editable
@@ -45,7 +44,7 @@ public class TextEditDriverTest : DriverTest
 
         // WHEN
         // i try to type "Hello World!" into the text edit
-        var exception = await Should.ThrowAsync<InvalidOperationException>(async () => await _textEdit.Type("Hello World!"));
+        var exception = Should.Throw<InvalidOperationException>(() => _textEdit.Type("Hello World!"));
 
         // THEN
         // the exception message is correct

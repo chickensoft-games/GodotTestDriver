@@ -3,9 +3,7 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -106,7 +104,7 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
     /// <param name="text">Item label.</param>
     /// <param name="addToSelection">True to add to the current selection, false to change the selection.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task SelectItemWithText(string text, bool addToSelection = false)
+    public void SelectItemWithText(string text, bool addToSelection = false)
     {
         var uiControl = VisibleRoot;
 
@@ -115,7 +113,6 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
             throw new InvalidOperationException(ErrorMessage("Cannot select multiple items because selection mode is not allowing it."));
         }
 
-        await uiControl.GetTree().NextFrame();
         var i = IndexOf(text);
         if (!uiControl.IsItemSelectable(i) || uiControl.IsItemDisabled(i))
         {
@@ -132,19 +129,17 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
         {
             uiControl.EmitSignal(ItemList.SignalName.ItemSelected, i);
         }
-
-        await uiControl.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Selects multiple items with the given texts.
     /// </summary>
     /// <param name="texts">Item label.</param>
-    public async Task SelectItemsWithText(IEnumerable<string> texts)
+    public void SelectItemsWithText(IEnumerable<string> texts)
     {
         foreach (var text in texts)
         {
-            await SelectItemWithText(text, true);
+            SelectItemWithText(text, true);
         }
     }
 
@@ -152,9 +147,9 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
     /// Selects multiple items with the given texts.
     /// </summary>
     /// <param name="texts">Item labels.</param>
-    public async Task SelectItemsWithText(params string[] texts)
+    public void SelectItemsWithText(params string[] texts)
     {
-        await SelectItemsWithText(texts.AsEnumerable());
+        SelectItemsWithText(texts.AsEnumerable());
     }
 
     /// <summary>
@@ -162,10 +157,9 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
     /// </summary>
     /// <param name="text">Item label.</param>
     /// <exception cref="InvalidOperationException"/>
-    public async Task DeselectItemWithText(string text)
+    public void DeselectItemWithText(string text)
     {
         var uiControl = VisibleRoot;
-        await uiControl.GetTree().NextFrame();
 
         var i = IndexOf(text);
         if (!uiControl.IsItemSelectable(i) || uiControl.IsItemDisabled(i))
@@ -174,32 +168,28 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
         }
 
         uiControl.Deselect(i);
-        await uiControl.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Deselects all items.
     /// </summary>
-    public async Task DeselectAll()
+    public void DeselectAll()
     {
         var uiControl = VisibleRoot;
-        await uiControl.GetTree().NextFrame();
         uiControl.DeselectAll();
-        await uiControl.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Activates the item with the given text.
     /// </summary>
     /// <param name="text">Item label.</param>
-    public async Task ActivateItemWithText(string text)
+    public void ActivateItemWithText(string text)
     {
         var uiControl = VisibleRoot;
-        await SelectItemWithText(text);
+        SelectItemWithText(text);
 
         // send the activation signal
         uiControl.EmitSignal(ItemList.SignalName.ItemActivated, IndexOf(text));
-        await uiControl.GetTree().WaitForEvents();
     }
 }
 

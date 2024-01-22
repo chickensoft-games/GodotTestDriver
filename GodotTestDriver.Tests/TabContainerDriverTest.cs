@@ -1,9 +1,10 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests;
 
 using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
+using GodotTestDriver.Util;
 using JetBrains.Annotations;
 using Shouldly;
 
@@ -47,7 +48,9 @@ public class TabContainerDriverTest : DriverTest
     {
         // WHEN
         // the second tab is selected
-        await _tabContainer.SelectTabWithTitle("Second Tab");
+        _tabContainer.SelectTabWithTitle("Second Tab");
+        // and we've waited an additional frame for Godot to change visibility
+        await _tabContainer.PresentRoot.ProcessFrame();
 
         // THEN
         // the second tab is selected

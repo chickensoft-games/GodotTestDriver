@@ -3,9 +3,7 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Godot;
-using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -56,9 +54,10 @@ public class TabContainerDriver<T> : ControlDriver<T> where T : TabContainer
     /// <summary>
     /// Selects the tab with the given index.
     /// </summary>
+    /// <remarks>Note that Godot requires one additional frame to set visibility of contents.</remarks>
     /// <param name="index">Tab index.</param>
     /// <exception cref="ArgumentOutOfRangeException"/>
-    public async Task SelectTabWithIndex(int index)
+    public void SelectTabWithIndex(int index)
     {
         var tab = VisibleRoot;
 
@@ -68,7 +67,6 @@ public class TabContainerDriver<T> : ControlDriver<T> where T : TabContainer
                 "Index must be between 0 and the amount of tabs in the tab control.");
         }
 
-        await tab.GetTree().NextFrame();
         var previousTab = tab.CurrentTab;
 
         tab.CurrentTab = index;
@@ -79,16 +77,15 @@ public class TabContainerDriver<T> : ControlDriver<T> where T : TabContainer
         {
             tab.EmitSignal(TabContainer.SignalName.TabChanged, index);
         }
-
-        await tab.GetTree().WaitForEvents();
     }
 
     /// <summary>
     /// Selects the tab with the given title
     /// </summary>
+    /// <remarks>Note that Godot requires one additional frame to set visibility of contents.</remarks>
     /// <param name="title">Tab label.</param>
     /// <exception cref="ArgumentException"/>
-    public async Task SelectTabWithTitle(string title)
+    public void SelectTabWithTitle(string title)
     {
         var index = TabTitles.ToList().IndexOf(title);
         if (index < 0)
@@ -96,7 +93,7 @@ public class TabContainerDriver<T> : ControlDriver<T> where T : TabContainer
             throw new ArgumentException($"No tab with the title '{title}' was found.", nameof(title));
         }
 
-        await SelectTabWithIndex(index);
+        SelectTabWithIndex(index);
     }
 }
 
