@@ -1,4 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Input;
+
+using System;
 using Godot;
 using JetBrains.Annotations;
 
@@ -18,13 +20,11 @@ public static class ControllerInputExtensions
     /// <seealso cref="Input.GetAxis(StringName, StringName)"/>
     public static void SetBidirectionalAxisInput(this Node node, string negativeAction, string positiveAction, float axisPosition)
     {
-        var action = positiveAction;
-        if (axisPosition < 0)
-        {
-            action = negativeAction;
-            axisPosition = -axisPosition;
-        }
-        node.StartAction(action, axisPosition);
+        var onAction = axisPosition >= 0 ? positiveAction : negativeAction;
+        var offAction = axisPosition >= 0 ? negativeAction : positiveAction;
+        axisPosition = Math.Abs(axisPosition);
+        node.StartAction(onAction, axisPosition);
+        node.EndAction(offAction);
     }
 
     /// <summary>
