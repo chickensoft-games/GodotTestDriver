@@ -20,7 +20,7 @@ public static class ControllerInputExtensions
     /// <param name="positiveAction">Action name for the positive side of the axis.</param>
     /// <param name="axisPosition">The position of the axis input, from -1 to +1.</param>
     /// <seealso cref="Input.GetAxis(StringName, StringName)"/>
-    public static void SetBidirectionalAxisInput(this Node node, string negativeAction, string positiveAction, float axisPosition)
+    public static void SetControllerDoubleAxisInput(this Node node, string negativeAction, string positiveAction, float axisPosition)
     {
         if (axisPosition == 0)
         {
@@ -43,7 +43,7 @@ public static class ControllerInputExtensions
     /// <param name="node">Node that generates simulated input.</param>
     /// <param name="negativeAction">Action name for the negative side of the axis.</param>
     /// <param name="positiveAction">Action name for the positive side of the axis.</param>
-    public static void EndBidirectionalAxisInput(this Node node, string negativeAction, string positiveAction)
+    public static void EndControllerDoubleAxisInput(this Node node, string negativeAction, string positiveAction)
     {
         node.EndAction(negativeAction);
         node.EndAction(positiveAction);
@@ -58,11 +58,11 @@ public static class ControllerInputExtensions
     /// <param name="positiveAction">Action name for the positive side of the axis.</param>
     /// <param name="axisPosition">The position of the axis input, from -1 to +1.</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task HoldBidirectionalAxisInputFor(this Node node, float seconds, string negativeAction, string positiveAction, float axisPosition)
+    public static async Task HoldControllerDoubleAxisInputFor(this Node node, float seconds, string negativeAction, string positiveAction, float axisPosition)
     {
-        node.SetBidirectionalAxisInput(negativeAction, positiveAction, axisPosition);
+        node.SetControllerDoubleAxisInput(negativeAction, positiveAction, axisPosition);
         await node.Wait(seconds);
-        node.EndBidirectionalAxisInput(negativeAction, positiveAction);
+        node.EndControllerDoubleAxisInput(negativeAction, positiveAction);
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public static class ControllerInputExtensions
     /// <param name="action">Action name for the axis.</param>
     /// <param name="axisPosition">The position of the axis input, from 0 to 1.</param>
     /// <seealso cref="Input.GetActionStrength(StringName, bool)"/>
-    public static void SetSingleAxisInput(this Node node, string action, float axisPosition)
+    public static void SetControllerSingleAxisInput(this Node node, string action, float axisPosition)
     {
         if (axisPosition == 0)
         {
@@ -89,7 +89,7 @@ public static class ControllerInputExtensions
     /// </summary>
     /// <param name="node">Node that generates simulated input.</param>
     /// <param name="action">Action name for the axis.</param>
-    public static void EndSingleAxisInput(this Node node, string action)
+    public static void EndControllerSingleAxisInput(this Node node, string action)
     {
         node.EndAction(action);
     }
@@ -102,10 +102,10 @@ public static class ControllerInputExtensions
     /// <param name="action">Action name for the axis.</param>
     /// <param name="axisPosition">The position of the axis input, from 0 to 1.</param>
     /// <returns>Task that completes when the input finishes.</returns>
-    public static async Task HoldSingleAxisInputFor(this Node node, float seconds, string action, float axisPosition)
+    public static async Task HoldControllerSingleAxisInputFor(this Node node, float seconds, string action, float axisPosition)
     {
-        node.SetSingleAxisInput(action, axisPosition);
+        node.SetControllerSingleAxisInput(action, axisPosition);
         await node.Wait(seconds);
-        node.EndSingleAxisInput(action);
+        node.EndControllerSingleAxisInput(action);
     }
 }
