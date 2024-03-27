@@ -20,11 +20,19 @@ public static class ControllerInputExtensions
     /// <seealso cref="Input.GetAxis(StringName, StringName)"/>
     public static void SetBidirectionalAxisInput(this Node node, string negativeAction, string positiveAction, float axisPosition)
     {
-        var onAction = axisPosition >= 0 ? positiveAction : negativeAction;
-        var offAction = axisPosition >= 0 ? negativeAction : positiveAction;
-        axisPosition = Math.Abs(axisPosition);
-        node.StartAction(onAction, axisPosition);
-        node.EndAction(offAction);
+        if (axisPosition == 0)
+        {
+            node.EndAction(negativeAction);
+            node.EndAction(positiveAction);
+        }
+        else
+        {
+            var onAction = axisPosition >= 0 ? positiveAction : negativeAction;
+            var offAction = axisPosition >= 0 ? negativeAction : positiveAction;
+            axisPosition = Math.Abs(axisPosition);
+            node.StartAction(onAction, axisPosition);
+            node.EndAction(offAction);
+        }
     }
 
     /// <summary>
@@ -48,7 +56,14 @@ public static class ControllerInputExtensions
     /// <seealso cref="Input.GetActionStrength(StringName, bool)"/>
     public static void SetSingleAxisInput(this Node node, string action, float axisPosition)
     {
-        node.StartAction(action, axisPosition);
+        if (axisPosition == 0)
+        {
+            node.EndAction(action);
+        }
+        else
+        {
+            node.StartAction(action, axisPosition);
+        }
     }
 
     /// <summary>
