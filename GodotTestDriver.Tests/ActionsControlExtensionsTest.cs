@@ -41,6 +41,17 @@ public partial class ActionsControlExtensionsTest : DriverTest
     }
 
     [Test]
+    public void StartActionClampsStrengthBetweenZeroAndOne()
+    {
+        RootNode.StartAction(TestAction, -1);
+        Input.GetActionStrength(TestAction).ShouldBe(0);
+        RootNode.EndAction(TestAction);
+        RootNode.StartAction(TestAction, 2);
+        Input.GetActionStrength(TestAction).ShouldBe(1);
+        RootNode.EndAction(TestAction);
+    }
+
+    [Test]
     public void EndActionUnsetsGlobalActionPressed()
     {
         RootNode.StartAction(TestAction);
