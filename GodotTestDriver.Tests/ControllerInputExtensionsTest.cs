@@ -37,6 +37,8 @@ public partial class ControllerInputExtensionsTest : DriverTest
     public void SetSingleAxisSetsStrength()
     {
         Input.GetActionStrength(TestAxis1).ShouldBe(0f);
+        RootNode.SetSingleAxisInput(TestAxis1, 0.8f);
+        Input.GetActionStrength(TestAxis1).ShouldBe(0.8f);
         RootNode.SetSingleAxisInput(TestAxis1, 0.25f);
         Input.GetActionStrength(TestAxis1).ShouldBe(0.25f);
         RootNode.SetSingleAxisInput(TestAxis1, 0.8f);
@@ -73,15 +75,21 @@ public partial class ControllerInputExtensionsTest : DriverTest
     {
         Input.GetActionStrength(TestAxis2Negative).ShouldBe(0f);
         Input.GetActionStrength(TestAxis2Positive).ShouldBe(0f);
-        RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, 0.25f);
-        Input.GetActionStrength(TestAxis2Negative).ShouldBe(0f);
-        Input.GetActionStrength(TestAxis2Positive).ShouldBe(0.25f);
-        RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, -0.25f);
-        Input.GetActionStrength(TestAxis2Negative).ShouldBe(0.25f);
-        Input.GetActionStrength(TestAxis2Positive).ShouldBe(0f);
         RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, 0.8f);
         Input.GetActionStrength(TestAxis2Negative).ShouldBe(0f);
         Input.GetActionStrength(TestAxis2Positive).ShouldBe(0.8f);
+        RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, 0.25f);
+        Input.GetActionStrength(TestAxis2Negative).ShouldBe(0f);
+        Input.GetActionStrength(TestAxis2Positive).ShouldBe(0.25f);
+        RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, 0.8f);
+        Input.GetActionStrength(TestAxis2Negative).ShouldBe(0f);
+        Input.GetActionStrength(TestAxis2Positive).ShouldBe(0.8f);
+        RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, -0.8f);
+        Input.GetActionStrength(TestAxis2Negative).ShouldBe(0.8f);
+        Input.GetActionStrength(TestAxis2Positive).ShouldBe(0f);
+        RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, -0.25f);
+        Input.GetActionStrength(TestAxis2Negative).ShouldBe(0.25f);
+        Input.GetActionStrength(TestAxis2Positive).ShouldBe(0f);
         RootNode.SetBidirectionalAxisInput(TestAxis2Negative, TestAxis2Positive, -0.8f);
         Input.GetActionStrength(TestAxis2Negative).ShouldBe(0.8f);
         Input.GetActionStrength(TestAxis2Positive).ShouldBe(0f);
