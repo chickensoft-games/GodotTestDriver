@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 #pragma warning disable IDE0060
 
 /// <summary>
-/// Input action extensions.
+/// Extensions for simulating action inputs.
 /// </summary>
 [PublicAPI]
 public static class ActionsInputExtensions

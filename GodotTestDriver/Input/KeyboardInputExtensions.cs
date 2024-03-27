@@ -6,7 +6,7 @@ using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
-/// Extensions which allow to send keyboard inputs.
+/// Extensions for simulating keyboard inputs.
 /// </summary>
 [PublicAPI]
 public static class KeyboardInputExtensions

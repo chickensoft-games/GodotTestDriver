@@ -4,7 +4,7 @@ using Godot;
 using JetBrains.Annotations;
 
 /// <summary>
-/// Extension functionality for controlling the mouse from tests.
+/// Extensions for simulating mouse inputs.
 /// </summary>
 [PublicAPI]
 public static class MouseInputExtensions
