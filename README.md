@@ -329,6 +329,51 @@ node.ReleaseKey(KeyList.A);
 node.TypeKey(KeyList.A);
 ```
 
+### Simulating controller input
+
+GodotTest provides a number of extension functions on `SceneTree`/`Node` that allow you to simulate controller input using Godot's [`InputEventJoypadButton`](https://docs.godotengine.org/en/stable/classes/class_inputeventjoypadbutton.html#class-inputeventjoypadbutton) and [`InputEventJoypadMotion`](https://docs.godotengine.org/en/stable/classes/class_inputeventjoypadmotion.html#class-inputeventjoypadmotion) events.
+
+```csharp
+// you can press down a controller button
+node.PressJoypadButton(JoyButton.Y);
+
+// you can release a controller button
+node.ReleaseJoypadButton(JoyButton.Y);
+
+// you can specify a particular controller device
+var deviceID = 0;
+node.PressJoypadButton(JoyButton.Y, deviceID);
+node.ReleaseJoypadButton(JoyButton.Y, deviceID);
+
+// you can simulate pressure for pressure-sensitive devices
+var pressure = 0.8f;
+node.PressJoypadButton(JoyButton.Y, deviceID, pressure);
+node.ReleaseJoypadButton(JoyButton.Y, deviceID);
+
+// you can combine pressing and releasing a button
+node.TapJoypadButton(JoyButton.Y, deviceID, pressure);
+
+// you can move an analog controller axis to a given position, with 0 being the rest position
+// for instance:
+// * a gamepad trigger will range from 0 to 1
+// * a thumbstick's x-axis will range from -1 to 1
+node.MoveJoypadAxisTo(JoyAxis.RightX, -0.3f);
+
+// you can release a controller axis (equivalent to setting its position to 0)
+node.ReleaseJoypadAxis(JoyAxis.RightX);
+
+// you can specify a particular controller device
+node.MoveJoypadAxisTo(JoyAxis.RightX, -0.3f, deviceID);
+node.ReleaseJoypadAxis(JoyAxis.RightX, deviceID);
+
+// hold a controller button for 1.5 seconds
+await node.HoldJoypadButtonFor(1.5f, JoyButton.Y, deviceID, pressure);
+// hold a controller axis position for 1.5 seconds
+await node.HoldJoypadAxisFor(1.5f, JoyAxis.RightX, -0.3f, deviceID);
+```
+
+To simulate [controller input using mapped actions](https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html#which-input-singleton-method-should-i-use), for use with Godot's `Input.GetActionStrength()`, `Input.GetAxis()`, and `Input.GetVector()` methods, see the next section.
+
 ### Simulating other actions
 
 Since version 2.1.0 you can now also simulate actions like this:
