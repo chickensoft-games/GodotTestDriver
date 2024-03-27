@@ -1,5 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Input;
 
+using System;
 using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Util;
@@ -46,7 +47,8 @@ public static class ActionsInputExtensions
             Action = actionName,
             Pressed = true
         });
-        Input.ActionPress(actionName, strength);
+        // clamp value ourselves to work around godotengine/godot/issues/89945
+        Input.ActionPress(actionName, Math.Clamp(strength, 0f, 1f));
         Input.FlushBufferedEvents();
     }
 
