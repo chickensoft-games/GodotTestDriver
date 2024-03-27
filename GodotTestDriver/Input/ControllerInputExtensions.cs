@@ -11,7 +11,7 @@ public static class ControllerInputExtensions
     /// <summary>
     /// Start a simulated input for a two-sided analog axis on a controller (for instance, the x-axis of a thumbstick).
     /// </summary>
-    /// <param name="node">Node to receive simulated input.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="negativeAction">Action name for the negative side of the axis.</param>
     /// <param name="positiveAction">Action name for the positive side of the axis.</param>
     /// <param name="axisPosition">The position of the axis input, from -1 to +1.</param>
@@ -30,7 +30,7 @@ public static class ControllerInputExtensions
     /// <summary>
     /// End a simulated input for a two-sided analog axis on a controller (for instance, the x-axis of a thumbstick).
     /// </summary>
-    /// <param name="node">Node to receive simulated input.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="negativeAction">Action name for the negative side of the axis.</param>
     /// <param name="positiveAction">Action name for the positive side of the axis.</param>
     public static void EndBidirectionalAxisInput(this Node node, string negativeAction, string positiveAction)
@@ -42,7 +42,7 @@ public static class ControllerInputExtensions
     /// <summary>
     /// Start a simulated input for a one-sided analog axis on a controller (for instance, a gamepad trigger).
     /// </summary>
-    /// <param name="node">Node to receive simulated input.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="action">Action name for the axis.</param>
     /// <param name="axisPosition">The position of the axis input, from 0 to 1.</param>
     /// <seealso cref="Input.GetActionStrength(StringName, bool)"/>
@@ -54,7 +54,7 @@ public static class ControllerInputExtensions
     /// <summary>
     /// End a simulated input for a one-sided analog axis on a controller (for instance, a gamepad trigger).
     /// </summary>
-    /// <param name="node">Node to receive simulated input.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="action">Action name for the axis.</param>
     public static void EndSingleAxisInput(this Node node, string action)
     {

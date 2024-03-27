@@ -16,7 +16,7 @@ public static class ActionsInputExtensions
     /// <summary>
     /// Hold an input action for a given duration.
     /// </summary>
-    /// <param name="node">Node to supply input to.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="seconds">Time, in seconds.</param>
     /// <param name="actionName">Name of the action.</param>
     /// <returns>Task that completes when the input finishes.</returns>
@@ -34,7 +34,7 @@ public static class ActionsInputExtensions
     /// <summary>
     /// Start an input action.
     /// </summary>
-    /// <param name="node">Node to supply input to.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="actionName">Name of the action.</param>
     /// <param name="strength">Action strength (optional — default is 1.0).</param>
     public static void StartAction(
@@ -53,7 +53,7 @@ public static class ActionsInputExtensions
     /// <summary>
     /// End an input action.
     /// </summary>
-    /// <param name="node">Node to supply input to.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="actionName">Name of the action.</param>
     public static void EndAction(this Node node, string actionName)
     {
