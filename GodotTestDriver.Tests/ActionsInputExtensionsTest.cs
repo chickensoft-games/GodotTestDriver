@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using Shouldly;
 
 [UsedImplicitly]
-public partial class ActionsControlExtensionsTest : DriverTest
+public partial class ActionsInputExtensionsTest : DriverTest
 {
     private partial class ActionInputEventTestNode : Node
     {
@@ -27,7 +27,7 @@ public partial class ActionsControlExtensionsTest : DriverTest
 
     private const string TestAction = "test_action";
 
-    public ActionsControlExtensionsTest(Node testScene) : base(testScene)
+    public ActionsInputExtensionsTest(Node testScene) : base(testScene)
     {
     }
 
@@ -37,6 +37,17 @@ public partial class ActionsControlExtensionsTest : DriverTest
         Input.IsActionPressed(TestAction).ShouldBeFalse();
         RootNode.StartAction(TestAction);
         Input.IsActionPressed(TestAction).ShouldBeTrue();
+        RootNode.EndAction(TestAction);
+    }
+
+    [Test]
+    public void StartActionClampsStrengthBetweenZeroAndOne()
+    {
+        RootNode.StartAction(TestAction, -1);
+        Input.GetActionStrength(TestAction).ShouldBe(0);
+        RootNode.EndAction(TestAction);
+        RootNode.StartAction(TestAction, 2);
+        Input.GetActionStrength(TestAction).ShouldBe(1);
         RootNode.EndAction(TestAction);
     }
 

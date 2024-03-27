@@ -329,6 +329,31 @@ node.ReleaseKey(KeyList.A);
 node.TypeKey(KeyList.A);
 ```
 
+### Simulating controller input
+
+Controller input in Godot [is handled through mapped actions](https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html#which-input-singleton-method-should-i-use). Support for direct action input is described below, but as a convenience, GodotTestDriver provides some extension methods for analog controller axes:
+
+```csharp
+// you can set unidirectional axes like gamepad triggers with values from 0 to 1
+node.SetControllerSingleAxis("left_trigger", 0.6f);
+node.SetControllerSingleAxis("left_trigger", 0.2f);
+// end unidrectional axis input
+node.ReleaseControllerSingleAxis("left_trigger");
+
+// you can also set bidirectional axes, like the x-axis of a thumbstick, from -1 to 1
+node.SetControllerDoubleAxis("move_left", "move_right", -0.3f);
+node.SetControllerDoubleAxis("move_left", "move_right", 0.7f);
+// end bidirectional axis input
+node.ReleaseControllerDoubleAxis("move_left", "move_right");
+
+// hold an axis input for 1 second
+await node.HoldControllerSingleAxisFor(1.0f, "left_trigger", 0.6f);
+// hold a bidirectional axis input for 1 second
+await node.HoldControllerDoubleAxisFor(1.0f, "move_left", "move_right", -0.3f);
+```
+
+To simulate controller button input, use action simulation.
+
 ### Simulating other actions
 
 Since version 2.1.0 you can now also simulate actions like this:
