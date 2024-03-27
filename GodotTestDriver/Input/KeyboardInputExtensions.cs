@@ -6,7 +6,7 @@ using GodotTestDriver.Util;
 using JetBrains.Annotations;
 
 /// <summary>
-/// Extensions which allow to send keyboard inputs.
+/// Extensions for simulating keyboard inputs.
 /// </summary>
 [PublicAPI]
 public static class KeyboardInputExtensions
@@ -14,7 +14,7 @@ public static class KeyboardInputExtensions
     /// <summary>
     /// Presses the given key with the given modifiers.
     /// </summary>
-    /// <param name="_">Node to perform input on.</param>
+    /// <param name="_">Node that generates simulated input.</param>
     /// <param name="key">Keyboard key.</param>
     /// <param name="control">Control modifier.</param>
     /// <param name="alt">Alt modifier.</param>
@@ -46,7 +46,7 @@ public static class KeyboardInputExtensions
     /// <summary>
     /// Simulate a key being pressed for a certain amount of time.
     /// </summary>
-    /// <param name="node">Node to perform input on.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="seconds">Input duration, in seconds.</param>
     /// <param name="key">Keyboard key.</param>
     /// <param name="control">Control modifier.</param>
@@ -72,7 +72,7 @@ public static class KeyboardInputExtensions
     /// <summary>
     /// Releases the given key with the given modifier state.
     /// </summary>
-    /// <param name="_">Node to perform input on.</param>
+    /// <param name="_">Node that generates simulated input.</param>
     /// <param name="key">Keyboard key.</param>
     /// <param name="control">Control modifier.</param>
     /// <param name="alt">Alt modifier.</param>
@@ -104,7 +104,7 @@ public static class KeyboardInputExtensions
     /// <summary>
     /// Presses and releases a key with the given modifiers.
     /// </summary>
-    /// <param name="node">Node to perform input on.</param>
+    /// <param name="node">Node that generates simulated input.</param>
     /// <param name="key">Keyboard key.</param>
     /// <param name="control">Control modifier.</param>
     /// <param name="alt">Alt modifier.</param>
