@@ -63,7 +63,7 @@ public partial class ControllerInputExtensionsTest : DriverTest
     }
 
     [Test]
-    public void SetBidirectionalAxisSetsBothStrengthValues()
+    public void SetDoubleAxisSetsBothStrengthValues()
     {
         Input.GetActionStrength(TestAxis2Negative).ShouldBe(0f);
         Input.GetActionStrength(TestAxis2Positive).ShouldBe(0f);
@@ -89,7 +89,7 @@ public partial class ControllerInputExtensionsTest : DriverTest
     }
 
     [Test]
-    public void EndBidrectionalAxisSetsStrengthsToZero()
+    public void EndDoubleAxisSetsStrengthsToZero()
     {
         RootNode.SetControllerDoubleAxisInput(TestAxis2Negative, TestAxis2Positive, 1);
         RootNode.EndControllerDoubleAxisInput(TestAxis2Negative, TestAxis2Positive);
@@ -102,7 +102,7 @@ public partial class ControllerInputExtensionsTest : DriverTest
     }
 
     [Test]
-    public void BidirectionalAxisValueClampsToNegativeOne()
+    public void DoubleAxisValueClampsToNegativeOne()
     {
         RootNode.SetControllerDoubleAxisInput(TestAxis2Negative, TestAxis2Positive, -2);
         Input.GetActionStrength(TestAxis2Negative).ShouldBe(1);
@@ -111,7 +111,7 @@ public partial class ControllerInputExtensionsTest : DriverTest
     }
 
     [Test]
-    public void BidirectionalAxisValueClampsToPositiveOne()
+    public void DoubleAxisValueClampsToPositiveOne()
     {
         RootNode.SetControllerDoubleAxisInput(TestAxis2Negative, TestAxis2Positive, 2);
         Input.GetActionStrength(TestAxis2Negative).ShouldBe(0);
@@ -120,7 +120,7 @@ public partial class ControllerInputExtensionsTest : DriverTest
     }
 
     [Test]
-    public void SetBidirectionalAxisToZeroEndsActions()
+    public void SetDoubleAxisToZeroEndsActions()
     {
         RootNode.SetControllerDoubleAxisInput(TestAxis2Negative, TestAxis2Positive, 0);
         Input.IsActionPressed(TestAxis2Negative).ShouldBeFalse();
