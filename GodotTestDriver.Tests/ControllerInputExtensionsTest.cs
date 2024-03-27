@@ -9,22 +9,6 @@ using Shouldly;
 [UsedImplicitly]
 public partial class ControllerInputExtensionsTest : DriverTest
 {
-    private partial class ControllerInputTestNode : Node
-    {
-        public bool HasInputEventFired { get; set; }
-        public bool WasInputPressed { get; set; }
-        public StringName InputEventName { get; set; } = string.Empty;
-
-        public override void _Input(InputEvent @event)
-        {
-            if (@event.IsAction(InputEventName))
-            {
-                HasInputEventFired = true;
-                WasInputPressed = @event.IsActionPressed(InputEventName);
-            }
-        }
-    }
-
     private const string TestAxis1 = "test_controller_axis1";
     private const string TestAxis2Positive = "test_controller_axis2_positive";
     private const string TestAxis2Negative = "test_controller_axis2_negative";
