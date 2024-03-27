@@ -29,6 +29,18 @@ test_action={
 "deadzone": 0.5,
 "events": []
 }
+test_controller_axis1={
+"deadzone": 0.01,
+"events": []
+}
+test_controller_axis2_positive={
+"deadzone": 0.01,
+"events": []
+}
+test_controller_axis2_negative={
+"deadzone": 0.01,
+"events": []
+}
 
 [rendering]
 
