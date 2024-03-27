@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 /// Extensions which allow to send keyboard inputs.
 /// </summary>
 [PublicAPI]
-public static class KeyboardControlExtensions
+public static class KeyboardInputExtensions
 {
     /// <summary>
     /// Presses the given key with the given modifiers.
