@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using Shouldly;
 
 [UsedImplicitly]
-public partial class ActionsControlExtensionsTest : DriverTest
+public partial class ActionsInputExtensionsTest : DriverTest
 {
     private partial class ActionInputEventTestNode : Node
     {
@@ -27,7 +27,7 @@ public partial class ActionsControlExtensionsTest : DriverTest
 
     private const string TestAction = "test_action";
 
-    public ActionsControlExtensionsTest(Node testScene) : base(testScene)
+    public ActionsInputExtensionsTest(Node testScene) : base(testScene)
     {
     }
 
