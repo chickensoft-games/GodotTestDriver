@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 /// Extension functionality for controlling the mouse from tests.
 /// </summary>
 [PublicAPI]
-public static class MouseControlExtensions
+public static class MouseInputExtensions
 {
     /// <summary>
     /// Clicks the mouse at the specified position.

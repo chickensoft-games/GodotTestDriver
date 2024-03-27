@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 /// Input action extensions.
 /// </summary>
 [PublicAPI]
-public static class ActionsControlExtensions
+public static class ActionsInputExtensions
 {
     /// <summary>
     /// Hold an input action for a given duration.
