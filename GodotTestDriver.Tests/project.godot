@@ -12,12 +12,16 @@ config_version=5
 
 config/name="GodotTestDriver.Tests"
 run/main_scene="res://Tests.tscn"
-config/features=PackedStringArray("4.0", "C#", "Mobile")
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="GodotTestDriver.Tests"
+
+[editor]
+
+naming/scene_name_casing=1
 
 [input]
 

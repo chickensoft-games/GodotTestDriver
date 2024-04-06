@@ -4,15 +4,15 @@ using Godot;
 using JetBrains.Annotations;
 
 /// <summary>
-/// Extension functionality for controlling the mouse from tests.
+/// Extensions for simulating mouse inputs.
 /// </summary>
 [PublicAPI]
-public static class MouseControlExtensions
+public static class MouseInputExtensions
 {
     /// <summary>
     /// Clicks the mouse at the specified position.
     /// </summary>
-    /// <param name="viewport">Viewport.</param>
+    /// <param name="viewport">Viewport that generates simulated input.</param>
     /// <param name="position">Position, in viewport coordinates.</param>
     /// <param name="button">Mouse button.</param>
     public static void ClickMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
@@ -24,7 +24,7 @@ public static class MouseControlExtensions
     /// <summary>
     /// Moves the mouse to the specified position.
     /// </summary>
-    /// <param name="viewport">Viewport.</param>
+    /// <param name="viewport">Viewport that generates simulated input.</param>
     /// <param name="position">Position, in viewport coordinates.</param>
     public static void MoveMouseTo(this Viewport viewport, Vector2 position)
     {
@@ -43,7 +43,7 @@ public static class MouseControlExtensions
     /// <summary>
     /// Drags the mouse from the start position to the end position.
     /// </summary>
-    /// <param name="viewport">Viewport.</param>
+    /// <param name="viewport">Viewport that generates simulated input.</param>
     /// <param name="start">Start position, in viewport coordinates.</param>
     /// <param name="end">End position, in viewport coordinates.</param>
     /// <param name="button">Mouse button.</param>
@@ -56,7 +56,7 @@ public static class MouseControlExtensions
     /// <summary>
     /// Presses the given mouse button.
     /// </summary>
-    /// <param name="_">Viewport.</param>
+    /// <param name="_">Viewport that generates simulated input.</param>
     /// <param name="button">Mouse button (left by default).</param>
     public static void PressMouse(this Viewport _, MouseButton button = MouseButton.Left)
     {
@@ -72,7 +72,7 @@ public static class MouseControlExtensions
     /// <summary>
     /// Releases the given mouse button.
     /// </summary>
-    /// <param name="_">Viewport.</param>
+    /// <param name="_">Viewport that generates simulated input.</param>
     /// <param name="button">Mouse button (left by default).</param>
     public static void ReleaseMouse(this Viewport _, MouseButton button = MouseButton.Left)
     {
