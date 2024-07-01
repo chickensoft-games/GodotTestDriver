@@ -29,11 +29,13 @@ public static class MouseInputExtensions
     public static void MoveMouseTo(this Viewport viewport, Vector2 position)
     {
         var oldPosition = viewport.GetMousePosition();
+        var stretchedPosition = viewport.StretchedPosition(position);
+
         viewport.WarpMouse(position);
         var inputEvent = new InputEventMouseMotion
         {
-            GlobalPosition = position,
-            Position = position,
+            GlobalPosition = stretchedPosition,
+            Position = stretchedPosition,
             Relative = position - oldPosition
         };
         Input.ParseInputEvent(inputEvent);
@@ -88,12 +90,14 @@ public static class MouseInputExtensions
     private static void PressMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
     {
         viewport.MoveMouseTo(position);
+        var stretchedPosition = viewport.StretchedPosition(position);
 
         var action = new InputEventMouseButton
         {
             ButtonIndex = button,
             Pressed = true,
-            Position = position
+            Position = stretchedPosition,
+            GlobalPosition = stretchedPosition
         };
         Input.ParseInputEvent(action);
         Input.FlushBufferedEvents();
@@ -102,14 +106,24 @@ public static class MouseInputExtensions
     private static void ReleaseMouseAt(this Viewport viewport, Vector2 position, MouseButton button = MouseButton.Left)
     {
         viewport.MoveMouseTo(position);
+        var stretchedPosition = viewport.StretchedPosition(position);
 
         var action = new InputEventMouseButton
         {
             ButtonIndex = button,
             Pressed = false,
-            Position = position
+            Position = stretchedPosition,
+            GlobalPosition = stretchedPosition
         };
         Input.ParseInputEvent(action);
         Input.FlushBufferedEvents();
+    }
+
+    // Correct for viewport's stretch transform
+    // see https://docs.godotengine.org/en/stable/tutorials/2d/2d_transforms.html#stretch-transform
+    private static Vector2 StretchedPosition(this Viewport viewport, Vector2 position)
+    {
+        var screenTransform = viewport.GetFinalTransform();
+        return screenTransform.BasisXform(position) + screenTransform.Origin;
     }
 }
