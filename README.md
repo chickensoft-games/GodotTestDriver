@@ -345,13 +345,8 @@ var deviceID = 0;
 node.PressJoypadButton(JoyButton.Y, deviceID);
 node.ReleaseJoypadButton(JoyButton.Y, deviceID);
 
-// you can simulate pressure for pressure-sensitive devices
-var pressure = 0.8f;
-node.PressJoypadButton(JoyButton.Y, deviceID, pressure);
-node.ReleaseJoypadButton(JoyButton.Y, deviceID);
-
 // you can combine pressing and releasing a button
-node.TapJoypadButton(JoyButton.Y, deviceID, pressure);
+node.TapJoypadButton(JoyButton.Y, deviceID);
 
 // you can move an analog controller axis to a given position, with 0 being the rest position
 // for instance:
@@ -367,7 +362,7 @@ node.MoveJoypadAxisTo(JoyAxis.RightX, -0.3f, deviceID);
 node.ReleaseJoypadAxis(JoyAxis.RightX, deviceID);
 
 // hold a controller button for 1.5 seconds
-await node.HoldJoypadButtonFor(1.5f, JoyButton.Y, deviceID, pressure);
+await node.HoldJoypadButtonFor(1.5f, JoyButton.Y, deviceID);
 // hold a controller axis position for 1.5 seconds
 await node.HoldJoypadAxisFor(1.5f, JoyAxis.RightX, -0.3f, deviceID);
 ```
