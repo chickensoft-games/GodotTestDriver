@@ -46,11 +46,10 @@ public static class ControllerInputExtensions
     /// <param name="seconds">Input duration, in seconds.</param>
     /// <param name="buttonIndex">Button that will be pressed.</param>
     /// <param name="device">Input device that is the source of the event.</param>
-    /// <param name="pressure">Pressure on the button, in the range 0.0f to 1.0f.</param>
     /// <returns>Asynchronous task completed when the button is released.</returns>
-    public static async Task HoldJoypadButtonFor(this Node node, float seconds, JoyButton buttonIndex, int device = 0, float pressure = 1.0f)
+    public static async Task HoldJoypadButtonFor(this Node node, float seconds, JoyButton buttonIndex, int device = 0)
     {
-        node.PressJoypadButton(buttonIndex, device, pressure);
+        node.PressJoypadButton(buttonIndex, device);
         await node.Wait(seconds);
         node.ReleaseJoypadButton(buttonIndex, device);
     }
@@ -66,10 +65,9 @@ public static class ControllerInputExtensions
     /// <param name="node">Node that generates simulated input.</param>
     /// <param name="buttonIndex">Button that will be pressed.</param>
     /// <param name="device">Input device that is the source of the event.</param>
-    /// <param name="pressure">Pressure on the button, in the range 0.0f to 1.0f.</param>
-    public static void TapJoypadButton(this Node node, JoyButton buttonIndex, int device = 0, float pressure = 1.0f)
+    public static void TapJoypadButton(this Node node, JoyButton buttonIndex, int device = 0)
     {
-        node.PressJoypadButton(buttonIndex, device, pressure);
+        node.PressJoypadButton(buttonIndex, device);
         node.ReleaseJoypadButton(buttonIndex, device);
     }
 
@@ -127,14 +125,12 @@ public static class ControllerInputExtensions
     /// <param name="_">Node that generates simulated input.</param>
     /// <param name="buttonIndex">Button that will be pressed.</param>
     /// <param name="device">Input device that is the source of the event.</param>
-    /// <param name="pressure">Pressure on the button, in the range 0.0f to 1.0f.</param>
-    public static void PressJoypadButton(this Node _, JoyButton buttonIndex, int device = 0, float pressure = 1.0f)
+    public static void PressJoypadButton(this Node _, JoyButton buttonIndex, int device = 0)
     {
         var inputEvent = new InputEventJoypadButton
         {
             Pressed = true,
             ButtonIndex = buttonIndex,
-            Pressure = pressure,
             Device = device
         };
         Input.ParseInputEvent(inputEvent);
@@ -157,7 +153,6 @@ public static class ControllerInputExtensions
         {
             Pressed = false,
             ButtonIndex = buttonIndex,
-            Pressure = 0.0f,
             Device = device
         };
         Input.ParseInputEvent(inputEvent);

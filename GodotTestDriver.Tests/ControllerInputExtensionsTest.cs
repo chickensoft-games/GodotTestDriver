@@ -77,17 +77,14 @@ public partial class ControllerInputExtensionsTest : DriverTest
         var testNode = new JoypadButtonInputEventTestNode();
         RootNode.AddChild(testNode);
         testNode.Events.Count.ShouldBe(0);
-        // Press controller device 1's X button with 80% pressure. Note that this doesn't correspond to
-        // actual functionality of common gamepads.
+        // Press controller device 1's X button.
         var button = JoyButton.X;
         var deviceID = 1;
-        var pressure = 0.8f;
-        testNode.PressJoypadButton(button, deviceID, pressure);
+        testNode.PressJoypadButton(button, deviceID);
         testNode.Events.Count.ShouldBe(1);
         testNode.Events[0].Event.Pressed.ShouldBeTrue();
         testNode.Events[0].Event.ButtonIndex.ShouldBe(button);
         testNode.Events[0].Event.Device.ShouldBe(deviceID);
-        testNode.Events[0].Event.Pressure.ShouldBe(pressure);
         RootNode.RemoveChild(testNode); // Remove immediately since we won't wait a frame for the free
         testNode.QueueFree();
     }
@@ -106,7 +103,6 @@ public partial class ControllerInputExtensionsTest : DriverTest
         testNode.Events[0].Event.Pressed.ShouldBeFalse();
         testNode.Events[0].Event.ButtonIndex.ShouldBe(button);
         testNode.Events[0].Event.Device.ShouldBe(deviceID);
-        testNode.Events[0].Event.Pressure.ShouldBe(0.0f);
         RootNode.RemoveChild(testNode); // Remove immediately since we won't wait a frame for the free
         testNode.QueueFree();
     }
@@ -117,21 +113,17 @@ public partial class ControllerInputExtensionsTest : DriverTest
         var testNode = new JoypadButtonInputEventTestNode();
         RootNode.AddChild(testNode);
         testNode.Events.Count.ShouldBe(0);
-        // Tap controller device 1's X button with 80% pressure. Note that this doesn't correspond to
-        // actual functionality of common gamepads.
+        // Tap controller device 1's X button.
         var button = JoyButton.X;
         var deviceID = 1;
-        var pressure = 0.8f;
-        testNode.TapJoypadButton(button, deviceID, pressure);
+        testNode.TapJoypadButton(button, deviceID);
         testNode.Events.Count.ShouldBe(2);
         testNode.Events[0].Event.Pressed.ShouldBeTrue();
         testNode.Events[0].Event.ButtonIndex.ShouldBe(button);
         testNode.Events[0].Event.Device.ShouldBe(deviceID);
-        testNode.Events[0].Event.Pressure.ShouldBe(pressure);
         testNode.Events[1].Event.Pressed.ShouldBeFalse();
         testNode.Events[1].Event.ButtonIndex.ShouldBe(button);
         testNode.Events[1].Event.Device.ShouldBe(deviceID);
-        testNode.Events[1].Event.Pressure.ShouldBe(0.0f);
         testNode.Events[1].ProcessFrame.ShouldBe(testNode.Events[0].ProcessFrame);
         RootNode.RemoveChild(testNode); // Remove immediately since we won't wait a frame for the free
         testNode.QueueFree();
@@ -143,23 +135,19 @@ public partial class ControllerInputExtensionsTest : DriverTest
         var testNode = new JoypadButtonInputEventTestNode();
         RootNode.AddChild(testNode);
         testNode.Events.Count.ShouldBe(0);
-        // Hold controller device 1's X button with 80% pressure for 2 seconds. Note that this doesn't correspond to
-        // actual functionality of common gamepads.
+        // Hold controller device 1's X button for 2 seconds.
         var button = JoyButton.X;
         var deviceID = 1;
-        var pressure = 0.8f;
         var seconds = 0.5f;
         var timeTolerance = 0.1f;
-        await testNode.HoldJoypadButtonFor(seconds, button, deviceID, pressure);
+        await testNode.HoldJoypadButtonFor(seconds, button, deviceID);
         testNode.Events.Count.ShouldBe(2);
         testNode.Events[0].Event.Pressed.ShouldBeTrue();
         testNode.Events[0].Event.ButtonIndex.ShouldBe(button);
         testNode.Events[0].Event.Device.ShouldBe(deviceID);
-        testNode.Events[0].Event.Pressure.ShouldBe(pressure);
         testNode.Events[1].Event.Pressed.ShouldBeFalse();
         testNode.Events[1].Event.ButtonIndex.ShouldBe(button);
         testNode.Events[1].Event.Device.ShouldBe(deviceID);
-        testNode.Events[1].Event.Pressure.ShouldBe(0.0f);
         var timeDiff = testNode.Events[1].DateTime - testNode.Events[0].DateTime;
         timeDiff.TotalSeconds.ShouldBe(seconds, timeTolerance);
         RootNode.RemoveChild(testNode); // Remove immediately since we won't wait a frame for the free
