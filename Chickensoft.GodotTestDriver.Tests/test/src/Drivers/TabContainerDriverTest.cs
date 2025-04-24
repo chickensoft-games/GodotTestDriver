@@ -1,4 +1,4 @@
-namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests.Drivers;
 
 using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
