@@ -5,10 +5,8 @@ using System.Linq;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public class ItemListDriverTest : DriverTest
 {
     private readonly ItemListDriver _itemList;

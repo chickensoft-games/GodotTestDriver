@@ -3,13 +3,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 using System;
 using Godot;
 using GodotTestDriver.Input;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for a <see cref="GraphNode"/>
 /// </summary>
 /// <typeparam name="T">GraphNode type.</typeparam>
-[PublicAPI]
 public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
 {
     /// <summary>
@@ -249,7 +247,6 @@ public class GraphNodeDriver<T> : ControlDriver<T> where T : GraphNode
 /// <summary>
 /// Driver for a <see cref="GraphNode"/>
 /// </summary>
-[PublicAPI]
 public sealed class GraphNodeDriver : GraphNodeDriver<GraphNode>
 {
     /// <summary>

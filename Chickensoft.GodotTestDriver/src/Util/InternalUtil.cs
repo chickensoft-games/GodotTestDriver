@@ -1,7 +1,6 @@
 namespace Chickensoft.GodotTestDriver.Util;
 
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Some useful extension methods. These are declared internal instead using GodotExt, so users can decide what
@@ -23,7 +22,6 @@ internal static class InternalUtil
     /// </summary>
     /// <param name="source">Node in the scene tree.</param>
     /// <param name="sleepTime">Time to sleep, in seconds.</param>
-    [MustUseReturnValue]
     public static SignalAwaiter SleepSeconds(this Node source, float sleepTime)
     {
         return source.ToSignal(source.GetTree().CreateTimer(sleepTime), SceneTreeTimer.SignalName.Timeout);

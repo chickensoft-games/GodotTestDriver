@@ -2,13 +2,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for <see cref="CanvasItem"/> nodes.
 /// </summary>
 /// <typeparam name="T">CanvasItem type.</typeparam>
-[PublicAPI]
 public class CanvasItemDriver<T> : NodeDriver<T> where T : CanvasItem
 {
     /// <summary>

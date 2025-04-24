@@ -3,12 +3,10 @@ namespace Chickensoft.GodotTestDriver.Input;
 using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Extensions for simulating keyboard inputs.
 /// </summary>
-[PublicAPI]
 public static class KeyboardInputExtensions
 {
     /// <summary>

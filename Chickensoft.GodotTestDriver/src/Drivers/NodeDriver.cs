@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using JetBrains.Annotations;
-using Object = Godot.GodotObject;
 
 /// <summary>
 /// Base class for test drivers that work on nodes. This is the non-generic variant, which will make it easier to
@@ -19,7 +17,6 @@ public abstract class NodeDriver
 /// Base class for test drivers that work on nodes.
 /// </summary>
 /// <typeparam name="T">Node type.</typeparam>
-[PublicAPI]
 public abstract class NodeDriver<T> : NodeDriver where T : Node
 {
     private readonly Func<T> _producer;
@@ -90,13 +87,12 @@ public abstract class NodeDriver<T> : NodeDriver where T : Node
     /// Returns the root node. Can be null in case the root
     /// node is not currently present in the scene tree or if the root node is not a valid instance anymore.
     /// </summary>
-    [CanBeNull]
     public T? Root
     {
         get
         {
             var node = _producer();
-            return Object.IsInstanceValid(node) && node.IsInsideTree() ? node : null;
+            return GodotObject.IsInstanceValid(node) && node.IsInsideTree() ? node : null;
         }
     }
 
@@ -112,7 +108,7 @@ public abstract class NodeDriver<T> : NodeDriver where T : Node
     /// <param name="signal">Signal name.</param>
     /// <param name="target">Target object.</param>
     /// <param name="method">Method name.</param>
-    public bool IsSignalConnected(string signal, Object target, string method)
+    public bool IsSignalConnected(string signal, GodotObject target, string method)
     {
         return PresentRoot.IsConnected(signal, new Callable(target, method));
     }

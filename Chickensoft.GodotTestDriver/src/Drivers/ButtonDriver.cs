@@ -2,13 +2,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for <see cref="Button"/> controls.
 /// </summary>
 /// <typeparam name="T">Button type.</typeparam>
-[PublicAPI]
 public class ButtonDriver<T> : BaseButtonDriver<T> where T : Button
 {
     /// <summary>
@@ -24,7 +22,6 @@ public class ButtonDriver<T> : BaseButtonDriver<T> where T : Button
 /// <summary>
 /// Driver for <see cref="Button"/> controls.
 /// </summary>
-[PublicAPI]
 public sealed class ButtonDriver : ButtonDriver<Button>
 {
     /// <summary>

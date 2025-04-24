@@ -2,7 +2,6 @@
 using System;
 using Godot;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for <see cref="Sprite2D"/> nodes.
@@ -52,7 +51,6 @@ public class Sprite2DDriver<T> : Node2DDriver<T> where T : Sprite2D
 /// <summary>
 /// Driver for <see cref="Sprite2D"/> nodes.
 /// </summary>
-[PublicAPI]
 public class Sprite2DDriver : Sprite2DDriver<Sprite2D>
 {
     /// <summary>

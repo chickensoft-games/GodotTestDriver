@@ -3,12 +3,10 @@ namespace Chickensoft.GodotTestDriver.Util;
 using System;
 using System.Threading.Tasks;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Wait extensions for Godot nodes and scene trees.
 /// </summary>
-[PublicAPI]
 public static class WaitExtensions
 {
     /// <summary>

@@ -4,14 +4,12 @@ using System;
 using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 
 #pragma warning disable IDE0060
 
 /// <summary>
 /// Extensions for simulating action inputs.
 /// </summary>
-[PublicAPI]
 public static class ActionsInputExtensions
 {
     /// <summary>

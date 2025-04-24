@@ -2,13 +2,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for a <see cref="CheckBox"/>.
 /// </summary>
 /// <typeparam name="T">CheckBox type.</typeparam>
-[PublicAPI]
 public class CheckBoxDriver<T> : ButtonDriver<T> where T : CheckBox
 {
     /// <summary>
@@ -29,7 +27,6 @@ public class CheckBoxDriver<T> : ButtonDriver<T> where T : CheckBox
 /// <summary>
 /// Driver for a <see cref="CheckBox"/>.
 /// </summary>
-[PublicAPI]
 public sealed class CheckBoxDriver : CheckBoxDriver<CheckBox>
 {
     /// <summary>

@@ -4,10 +4,8 @@ using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public class Camera2DDriverTest : DriverTest
 {
     private readonly Camera2DDriver _camera2D;

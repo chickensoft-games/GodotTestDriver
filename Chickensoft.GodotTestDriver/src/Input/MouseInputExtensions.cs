@@ -1,12 +1,10 @@
 namespace Chickensoft.GodotTestDriver.Input;
 
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Extensions for simulating mouse inputs.
 /// </summary>
-[PublicAPI]
 public static class MouseInputExtensions
 {
     /// <summary>

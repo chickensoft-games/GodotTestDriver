@@ -4,13 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// A driver for the <see cref="TabContainer"/> control.
 /// </summary>
 /// <typeparam name="T">TabContainer type.</typeparam>
-[PublicAPI]
 public class TabContainerDriver<T> : ControlDriver<T> where T : TabContainer
 {
     /// <summary>
@@ -100,7 +98,6 @@ public class TabContainerDriver<T> : ControlDriver<T> where T : TabContainer
 /// <summary>
 /// A driver for the <see cref="TabContainer"/> control.
 /// </summary>
-[PublicAPI]
 public sealed class TabContainerDriver : TabContainerDriver<TabContainer>
 {
     /// <summary>

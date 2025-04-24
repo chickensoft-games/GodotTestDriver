@@ -2,13 +2,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for the <see cref="LineEdit"/> control.
 /// </summary>
 /// <typeparam name="T">LineEdit type.</typeparam>
-[PublicAPI]
 public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
 {
     /// <summary>
@@ -71,7 +69,6 @@ public class LineEditDriver<T> : ControlDriver<T> where T : LineEdit
 /// <summary>
 /// Driver for the <see cref="LineEdit"/> control.
 /// </summary>
-[PublicAPI]
 public sealed class LineEditDriver : LineEditDriver<LineEdit>
 {
     /// <summary>
