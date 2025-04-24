@@ -4,17 +4,13 @@
   ],
   "ignorePaths": [
     "**/*.tscn",
-    "**/*.DotSettings",
-    "**/*.DotSettings.user",
     "**/*.import",
-    "Chickensoft.LogicBlocks.Tests/badges/**/*.*",
-    "Chickensoft.LogicBlocks.Tests/coverage/**/*.*",
-    "Chickensoft.LogicBlocks.Tests/.godot/**/*.*",
+    "**/badges/**/*.*",
+    "**/coverage/**/*.*",
+    "**/.godot/**/*.*",
     "**/obj/**/*.*",
     "**/bin/**/*.*",
-    "**/*.pdb",
     "**/nupkg/**/*.*",
-    "Chickensoft.LogicBlocks/nupkg/**/*.*"
   ],
   "words": [
     "assemblyfilters",
