@@ -16,7 +16,7 @@
         "--run-tests",
         "--quit-on-finish"
       ],
-      "cwd": "${workspaceFolder}/GodotTestDriver.Tests",
+      "cwd": "${workspaceFolder}/Chickensoft.GodotTestDriver.Tests",
       "stopAtEntry": false,
     },
     {
@@ -30,7 +30,7 @@
         "--run-tests=${fileBasenameNoExtension}",
         "--quit-on-finish"
       ],
-      "cwd": "${workspaceFolder}/GodotTestDriver.Tests",
+      "cwd": "${workspaceFolder}/Chickensoft.GodotTestDriver.Tests",
       "stopAtEntry": false,
     },
   ]

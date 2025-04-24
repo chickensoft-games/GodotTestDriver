@@ -22,10 +22,10 @@
     {
       "label": "coverage",
       "group": "test",
-      "command": "${workspaceFolder}/GodotTestDriver.Tests/coverage.sh",
+      "command": "${workspaceFolder}/Chickensoft.GodotTestDriver.Tests/coverage.sh",
       "type": "shell",
       "options": {
-        "cwd": "${workspaceFolder}/GodotTestDriver.Tests"
+        "cwd": "${workspaceFolder}/Chickensoft.GodotTestDriver.Tests"
       },
       "presentation": {
         "echo": true,
@@ -42,7 +42,7 @@
       "command": "dotnet restore; ${env:GODOT4} --headless --build-solutions --quit || exit 0",
       "type": "shell",
       "options": {
-        "cwd": "${workspaceFolder}/GodotTestDriver.Tests"
+        "cwd": "${workspaceFolder}/Chickensoft.GodotTestDriver.Tests"
       },
       "presentation": {
         "echo": true,

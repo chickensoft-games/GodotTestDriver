@@ -20,6 +20,6 @@
   <ItemGroup>
     <PackageReference Include="Chickensoft.GoDotTest" Version="1.1.10" />
     <PackageReference Include="Shouldly" Version="4.2.1" />
-    <ProjectReference Include="../GodotTestDriver/GodotTestDriver.csproj" />
+    <ProjectReference Include="../Chickensoft.GodotTestDriver/Chickensoft.GodotTestDriver.csproj" />
   </ItemGroup>
 </Project>
