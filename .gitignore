@@ -1,14 +1,14 @@
-GodotTestDriver/nupkg/
-
-GodotTestDriver.Tests/coverage/*
-!GodotTestDriver.Tests/coverage/.gdignore
-
+**/coverage/*
+!**/coverage/.gdignore
+nupkg/
 **/.godot/
 **/.import/
 bin/
 obj/
 .generated/
 .DS_Store
+*.DotSettings.user
+*.binlog
 
 # IDEs
 **/.idea
