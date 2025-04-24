@@ -67,11 +67,11 @@ jobs:
           version: global.json
 
       - name: 🧑‍🔬 Generate .NET Bindings
-        working-directory: GodotTestDriver.Tests
+        working-directory: Chickensoft.GodotTestDriver.Tests
         run: godot --headless --build-solutions --quit || exit 0
 
       - name: 🌋 Run Tests in Godot
-        working-directory: GodotTestDriver.Tests
+        working-directory: Chickensoft.GodotTestDriver.Tests
         run: |
           xvfb-run godot --audio-driver Dummy --rendering-driver ${{ matrix.render-driver }} --run-tests --quit-on-finish --coverage
           echo "Finished running tests in Godot with emulated ${{ matrix.render-driver }} graphics."
