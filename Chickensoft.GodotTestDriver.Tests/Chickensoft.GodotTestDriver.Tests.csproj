@@ -18,8 +18,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Chickensoft.GoDotTest" Version="1.1.10" />
-    <PackageReference Include="Shouldly" Version="4.2.1" />
+    <PackageReference Include="Chickensoft.GoDotTest" Version="1.6.7" />
+    <PackageReference Include="Shouldly" Version="4.3.0" />
     <ProjectReference Include="../Chickensoft.GodotTestDriver/Chickensoft.GodotTestDriver.csproj" />
   </ItemGroup>
 </Project>
