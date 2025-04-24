@@ -1,10 +1,6 @@
 name: 🖼 Visual Tests
 on:
   push:
-    branches:
-      - '**'
-    paths:
-      - '**.cs'
   pull_request:
 
 jobs:
