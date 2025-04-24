@@ -45,10 +45,10 @@ public static class ActionsInputExtensions
         Input.ParseInputEvent(new InputEventAction
         {
             Action = actionName,
-            Pressed = true
+            Pressed = true,
+            Strength = strength
         });
-        // clamp value ourselves to work around godotengine/godot/issues/89945
-        Input.ActionPress(actionName, Math.Clamp(strength, 0f, 1f));
+        Input.ActionPress(actionName, strength);
         Input.FlushBufferedEvents();
     }
 
