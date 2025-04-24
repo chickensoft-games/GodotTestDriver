@@ -52,7 +52,7 @@ public partial class ActionsInputExtensionsTest : InputTest
     }
 
     [Test]
-    public void EndActionUnsetsGlobalActionPressed()
+    public void EndActionRemovesGlobalActionPressed()
     {
         RootNode.StartAction(TestAction);
         RootNode.EndAction(TestAction);
