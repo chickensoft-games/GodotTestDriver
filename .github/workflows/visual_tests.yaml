@@ -8,8 +8,8 @@ on:
   pull_request:
 
 jobs:
-  visual_tests:
-    name: 🖼 Visual Tests
+  tests:
+    name: 🖼 Visual Tests with ${{ matrix.render-driver }}
     runs-on: ubuntu-latest
     # Only run the workflow if it's not a PR or if it's a PR from a fork.
     # This prevents duplicate workflows from running on PR's that originate
@@ -29,13 +29,13 @@ jobs:
         shell: bash
     steps:
       - name: 🧾 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           lfs: true
           submodules: 'recursive'
 
       - name: 💽 Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           # Use the .NET SDK from global.json in the root of the repository.
           global-json-file: global.json
@@ -55,7 +55,7 @@ jobs:
           version: 1.0
 
       - name: 🤖 Setup Godot
-        uses: chickensoft-games/setup-godot@v1
+        uses: chickensoft-games/setup-godot@v2
         with:
           # Version must include major, minor, and patch, and be >= 4.0.0
           # Pre-release label is optional.
@@ -67,11 +67,11 @@ jobs:
           version: global.json
 
       - name: 🧑‍🔬 Generate .NET Bindings
-        working-directory: GodotTestDriver.Tests
+        working-directory: Chickensoft.GodotTestDriver.Tests
         run: godot --headless --build-solutions --quit || exit 0
 
       - name: 🌋 Run Tests in Godot
-        working-directory: GodotTestDriver.Tests
+        working-directory: Chickensoft.GodotTestDriver.Tests
         run: |
           xvfb-run godot --audio-driver Dummy --rendering-driver ${{ matrix.render-driver }} --run-tests --quit-on-finish --coverage
           echo "Finished running tests in Godot with emulated ${{ matrix.render-driver }} graphics."

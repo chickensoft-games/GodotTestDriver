@@ -1,4 +1,4 @@
-﻿namespace Chickensoft.GodotTestDriver.Tests;
+﻿namespace Chickensoft.GodotTestDriver.Tests.Drivers;
 
 using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
@@ -19,7 +19,7 @@ public abstract class DriverTest : TestClass
     [UsedImplicitly]
     public async Task Setup()
     {
-        RootNode = await Fixture.LoadAndAddScene<Node>($"res://{GetType().Name}.tscn");
+        RootNode = await Fixture.LoadAndAddScene<Node>($"res://test/src/Drivers/{GetType().Name}.tscn");
     }
 
     [Cleanup]

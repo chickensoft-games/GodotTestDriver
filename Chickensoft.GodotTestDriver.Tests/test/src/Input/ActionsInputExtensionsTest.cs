@@ -1,4 +1,4 @@
-namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests.Input;
 
 using Chickensoft.GoDotTest;
 using Godot;
@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using Shouldly;
 
 [UsedImplicitly]
-public partial class ActionsInputExtensionsTest : DriverTest
+public partial class ActionsInputExtensionsTest : InputTest
 {
     private partial class ActionInputEventTestNode : Node
     {
@@ -52,7 +52,7 @@ public partial class ActionsInputExtensionsTest : DriverTest
     }
 
     [Test]
-    public void EndActionUnsetsGlobalActionPressed()
+    public void EndActionRemovesGlobalActionPressed()
     {
         RootNode.StartAction(TestAction);
         RootNode.EndAction(TestAction);

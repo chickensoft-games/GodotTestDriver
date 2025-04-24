@@ -1,4 +1,4 @@
-namespace Chickensoft.GodotTestDriver.Tests;
+namespace Chickensoft.GodotTestDriver.Tests.Input;
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using JetBrains.Annotations;
 using Shouldly;
 
 [UsedImplicitly]
-public partial class ControllerInputExtensionsTest : DriverTest
+public partial class ControllerInputExtensionsTest : InputTest
 {
     private class TimedButtonEvent
     {
