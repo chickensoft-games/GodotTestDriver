@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Input;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for <see cref="Control"/> nodes.
 /// </summary>
 /// <typeparam name="T">Control type.</typeparam>
-[PublicAPI]
 public class ControlDriver<T> : CanvasItemDriver<T> where T : Control
 {
     /// <summary>

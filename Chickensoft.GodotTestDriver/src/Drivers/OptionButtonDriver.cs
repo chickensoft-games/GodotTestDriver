@@ -3,13 +3,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 using System;
 using System.Collections.Generic;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for <see cref="OptionButton"/> controls.
 /// </summary>
 /// <typeparam name="T">OptionButton type.</typeparam>
-[PublicAPI]
 public class OptionButtonDriver<T> : BaseButtonDriver<T> where T : OptionButton
 {
     /// <summary>
@@ -150,7 +148,6 @@ public class OptionButtonDriver<T> : BaseButtonDriver<T> where T : OptionButton
 /// <summary>
 /// Driver for <see cref="OptionButton"/> controls.
 /// </summary>
-[PublicAPI]
 public sealed class OptionButtonDriver : OptionButtonDriver<OptionButton>
 {
     /// <summary>

@@ -2,13 +2,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for the <see cref="RichTextLabel"/> control.
 /// </summary>
 /// <typeparam name="T">RichTextLabel type.</typeparam>
-[PublicAPI]
 public class RichTextLabelDriver<T> : ControlDriver<T> where T : RichTextLabel
 {
     /// <summary>
@@ -34,7 +32,6 @@ public class RichTextLabelDriver<T> : ControlDriver<T> where T : RichTextLabel
 /// <summary>
 /// Driver for the <see cref="RichTextLabel"/> control.
 /// </summary>
-[PublicAPI]
 public sealed class RichTextLabelDriver : RichTextLabelDriver<RichTextLabel>
 {
     /// <summary>

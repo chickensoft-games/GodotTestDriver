@@ -5,10 +5,8 @@ using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public class TabContainerDriverTest : DriverTest
 {
     private readonly TabContainerDriver _tabContainer;

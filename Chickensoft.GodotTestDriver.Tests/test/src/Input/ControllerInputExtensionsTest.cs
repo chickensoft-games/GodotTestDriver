@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Chickensoft.GodotTestDriver.Input;
 using Godot;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public partial class ControllerInputExtensionsTest : InputTest
 {
     private class TimedButtonEvent

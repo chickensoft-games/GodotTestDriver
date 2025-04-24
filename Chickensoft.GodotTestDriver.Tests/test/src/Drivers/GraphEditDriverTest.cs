@@ -4,10 +4,8 @@ using System.Linq;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public class GraphEditDriverTest : DriverTest
 {
     private readonly GraphEditDriver _graphEdit;

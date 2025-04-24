@@ -2,13 +2,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for the <see cref="Label"/> control.
 /// </summary>
 /// <typeparam name="T">Label type.</typeparam>
-[PublicAPI]
 public class LabelDriver<T> : ControlDriver<T> where T : Label
 {
     /// <summary>
@@ -29,7 +27,6 @@ public class LabelDriver<T> : ControlDriver<T> where T : Label
 /// <summary>
 /// Driver for the <see cref="Label"/> control.
 /// </summary>
-[PublicAPI]
 public sealed class LabelDriver : LabelDriver<Label>
 {
     /// <summary>

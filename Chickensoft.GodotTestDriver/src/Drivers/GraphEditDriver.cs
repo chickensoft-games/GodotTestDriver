@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Godot.Collections;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for a <see cref="GraphEdit"/>.
@@ -13,7 +12,6 @@ using JetBrains.Annotations;
 /// <typeparam name="TGraphEdit">GraphEdit type.</typeparam>
 /// <typeparam name="TGraphNodeDriver">GraphNodeDriver type.</typeparam>
 /// <typeparam name="TGraphNode">GraphNode type.</typeparam>
-[PublicAPI]
 public class GraphEditDriver<TGraphEdit, TGraphNodeDriver, TGraphNode> : ControlDriver<TGraphEdit>
     where TGraphEdit : GraphEdit where TGraphNode : GraphNode where TGraphNodeDriver : GraphNodeDriver<TGraphNode>
 {
@@ -123,7 +121,6 @@ public class GraphEditDriver<TGraphEdit, TGraphNodeDriver, TGraphNode> : Control
 /// <summary>
 /// Driver for a <see cref="GraphEdit"/>.
 /// </summary>
-[PublicAPI]
 public class GraphEditDriver : GraphEditDriver<GraphEdit, GraphNodeDriver, GraphNode>
 {
     /// <summary>

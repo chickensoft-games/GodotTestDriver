@@ -4,10 +4,8 @@ using System;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public class TextEditDriverTest : DriverTest
 {
     private readonly TextEditDriver _textEdit;

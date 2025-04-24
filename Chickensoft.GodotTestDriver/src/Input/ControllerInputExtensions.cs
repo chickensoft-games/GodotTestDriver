@@ -3,13 +3,11 @@ namespace Chickensoft.GodotTestDriver.Input;
 using System.Threading.Tasks;
 using Chickensoft.GodotTestDriver.Util;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Extensions for simulating controller inputs.
 /// </summary>
 /// <seealso cref="ActionsInputExtensions"/>
-[PublicAPI]
 public static class ControllerInputExtensions
 {
     /// <summary>

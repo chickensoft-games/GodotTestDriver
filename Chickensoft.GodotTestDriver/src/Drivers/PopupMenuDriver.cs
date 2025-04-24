@@ -3,13 +3,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 using System;
 using System.Collections.Generic;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for a popup menu.
 /// </summary>
 /// <typeparam name="T">PopupMenu type.</typeparam>
-[PublicAPI]
 public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
 {
     /// <summary>
@@ -252,7 +250,6 @@ public class PopupMenuDriver<T> : WindowDriver<T> where T : PopupMenu
 /// <summary>
 /// Driver for a popup menu.
 /// </summary>
-[PublicAPI]
 public sealed class PopupMenuDriver : PopupMenuDriver<PopupMenu>
 {
     /// <summary>

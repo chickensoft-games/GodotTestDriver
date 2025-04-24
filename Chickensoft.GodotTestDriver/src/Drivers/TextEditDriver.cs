@@ -2,7 +2,6 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 
 using System;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for the <see cref="TextEdit"/> control.
@@ -53,7 +52,6 @@ public class TextEditDriver<T> : ControlDriver<T> where T : TextEdit
 /// <summary>
 /// Driver for the <see cref="TextEdit"/> control.
 /// </summary>
-[PublicAPI]
 public class TextEditDriver : TextEditDriver<TextEdit>
 {
     /// <summary>

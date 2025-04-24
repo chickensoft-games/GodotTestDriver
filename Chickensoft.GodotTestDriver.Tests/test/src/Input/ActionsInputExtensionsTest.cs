@@ -3,10 +3,8 @@ namespace Chickensoft.GodotTestDriver.Tests.Input;
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Input;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public partial class ActionsInputExtensionsTest : InputTest
 {
     private partial class ActionInputEventTestNode : Node

@@ -3,7 +3,6 @@
 using System.Threading.Tasks;
 using Chickensoft.GoDotTest;
 using Godot;
-using JetBrains.Annotations;
 
 public abstract class DriverTest : TestClass
 {
@@ -16,14 +15,12 @@ public abstract class DriverTest : TestClass
     }
 
     [Setup]
-    [UsedImplicitly]
     public async Task Setup()
     {
         RootNode = await Fixture.LoadAndAddScene<Node>($"res://test/src/Drivers/{GetType().Name}.tscn");
     }
 
     [Cleanup]
-    [UsedImplicitly]
     public async Task Cleanup()
     {
         await Fixture.Cleanup();

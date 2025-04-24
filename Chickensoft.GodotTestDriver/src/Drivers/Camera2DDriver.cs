@@ -4,13 +4,11 @@ using System;
 using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for the Camera2D node.
 /// </summary>
 /// <typeparam name="T">Camera2D type.</typeparam>
-[PublicAPI]
 public class Camera2DDriver<T> : Node2DDriver<T> where T : Camera2D
 {
     /// <summary>
@@ -85,7 +83,6 @@ public class Camera2DDriver<T> : Node2DDriver<T> where T : Camera2D
 /// <summary>
 /// Driver for the Camera2D node.
 /// </summary>
-[PublicAPI]
 public sealed class Camera2DDriver : Camera2DDriver<Camera2D>
 {
     /// <summary>

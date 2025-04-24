@@ -7,14 +7,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Godot;
 using GodotTestDriver.Util;
-using JetBrains.Annotations;
 using Object = Godot.GodotObject;
 
 /// <summary>
 /// This is a test fixture that can be use to manage nodes in the test scene. It ensures that modifications to the scene are
 /// always executed in the main thread. It also provides a simple means of cleaning up the scene after each test.
 /// </summary>
-[PublicAPI]
 public class Fixture
 {
     private readonly List<Func<Task>> _cleanupSteps = new();

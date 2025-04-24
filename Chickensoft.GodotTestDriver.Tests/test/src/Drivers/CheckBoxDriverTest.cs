@@ -3,10 +3,8 @@
 using Chickensoft.GoDotTest;
 using Godot;
 using GodotTestDriver.Drivers;
-using JetBrains.Annotations;
 using Shouldly;
 
-[UsedImplicitly]
 public class CheckBoxDriverTest : DriverTest
 {
     private readonly CheckBoxDriver _checkBox;

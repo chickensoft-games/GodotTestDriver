@@ -3,13 +3,11 @@ namespace Chickensoft.GodotTestDriver.Drivers;
 using System;
 using Godot;
 using GodotTestDriver.Input;
-using JetBrains.Annotations;
 
 /// <summary>
 /// A driver for UI Windows.
 /// </summary>
 /// <typeparam name="T">Window type.</typeparam>
-[PublicAPI]
 public class WindowDriver<T> : NodeDriver<T> where T : Window
 {
     /// <summary>
@@ -104,7 +102,6 @@ public class WindowDriver<T> : NodeDriver<T> where T : Window
 /// <summary>
 /// A driver for UI Windows.
 /// </summary>
-[PublicAPI]
 public class WindowDriver : WindowDriver<Window>
 {
     /// <summary>

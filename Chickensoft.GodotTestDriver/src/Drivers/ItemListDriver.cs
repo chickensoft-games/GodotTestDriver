@@ -4,13 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using JetBrains.Annotations;
 
 /// <summary>
 /// Driver for an ItemList control.
 /// </summary>
 /// <typeparam name="T">Item list type.</typeparam>
-[PublicAPI]
 public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
 {
     /// <summary>
@@ -196,7 +194,6 @@ public class ItemListDriver<T> : ControlDriver<T> where T : ItemList
 /// <summary>
 /// Driver for an ItemList control.
 /// </summary>
-[PublicAPI]
 public sealed class ItemListDriver : ItemListDriver<ItemList>
 {
     /// <summary>
