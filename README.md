@@ -15,7 +15,7 @@ This library provides an API that simplifies writing integration tests for Godot
 ---
 
 <p align="center">
-<img alt="Chickensoft.GodotTestDriver" src="GodotTestDriver/icon.png" width="200">
+<img alt="Chickensoft.GodotTestDriver" src="Chickensoft.GodotTestDriver/icon.png" width="200">
 </p>
 
 ---
