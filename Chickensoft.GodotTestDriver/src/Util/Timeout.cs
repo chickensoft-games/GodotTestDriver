@@ -7,21 +7,22 @@ using System;
 /// </summary>
 public readonly struct Timeout
 {
-    private readonly float _seconds;
-    private readonly long _start;
+  private readonly float _seconds;
+  private readonly long _start;
 
-    /// <summary>
-    /// Create a new timeout with the given duration.
-    /// </summary>
-    /// <param name="seconds">Time, in seconds.</param>
-    public Timeout(float seconds)
-    {
-        _seconds = seconds;
-        _start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-    }
+  /// <summary>
+  /// Create a new timeout with the given duration.
+  /// </summary>
+  /// <param name="seconds">Time, in seconds.</param>
+  public Timeout(float seconds)
+  {
+    _seconds = seconds;
+    _start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+  }
 
-    /// <summary>
-    /// Whether the given duration has elapsed.
-    /// </summary>
-    public bool IsReached => DateTimeOffset.Now.ToUnixTimeMilliseconds() - _start > 1000f * _seconds;
+  /// <summary>
+  /// Whether the given duration has elapsed.
+  /// </summary>
+  public bool IsReached =>
+    DateTimeOffset.Now.ToUnixTimeMilliseconds() - _start > 1000f * _seconds;
 }

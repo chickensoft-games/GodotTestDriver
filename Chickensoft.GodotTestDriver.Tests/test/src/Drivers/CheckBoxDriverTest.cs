@@ -7,30 +7,32 @@ using Shouldly;
 
 public class CheckBoxDriverTest : DriverTest
 {
-    private readonly CheckBoxDriver _checkBox;
+  private readonly CheckBoxDriver _checkBox;
 
-    public CheckBoxDriverTest(Node testScene) : base(testScene)
-    {
-        _checkBox = new CheckBoxDriver(() => RootNode.GetNode<CheckBox>("CheckBox"));
-    }
+  public CheckBoxDriverTest(Node testScene) : base(testScene)
+  {
+    _checkBox = new CheckBoxDriver(
+      () => RootNode.GetNode<CheckBox>("CheckBox")
+    );
+  }
 
-    [Test]
-    public void ClickingChecksAndUnchecks()
-    {
-        // WHEN
-        // i click the checkbox
-        _checkBox.ClickCenter();
+  [Test]
+  public void ClickingChecksAndUnchecks()
+  {
+    // WHEN
+    // i click the checkbox
+    _checkBox.ClickCenter();
 
-        // THEN
-        // the checkbox is checked
-        _checkBox.IsChecked.ShouldBeTrue();
+    // THEN
+    // the checkbox is checked
+    _checkBox.IsChecked.ShouldBeTrue();
 
-        // WHEN
-        // i click the checkbox again
-        _checkBox.ClickCenter();
+    // WHEN
+    // i click the checkbox again
+    _checkBox.ClickCenter();
 
-        // THEN
-        // the checkbox is unchecked
-        _checkBox.IsChecked.ShouldBeFalse();
-    }
+    // THEN
+    // the checkbox is unchecked
+    _checkBox.IsChecked.ShouldBeFalse();
+  }
 }

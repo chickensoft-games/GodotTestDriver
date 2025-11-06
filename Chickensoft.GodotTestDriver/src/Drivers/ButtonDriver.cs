@@ -9,14 +9,15 @@ using Godot;
 /// <typeparam name="T">Button type.</typeparam>
 public class ButtonDriver<T> : BaseButtonDriver<T> where T : Button
 {
-    /// <summary>
-    /// Creates a new generic ButtonDriver.
-    /// </summary>
-    /// <param name="producer">Producer that creates a Button subclass.</param>
-    /// <param name="description">Driver description.</param>
-    public ButtonDriver(Func<T> producer, string description = "") : base(producer, description)
-    {
-    }
+  /// <summary>
+  /// Creates a new generic ButtonDriver.
+  /// </summary>
+  /// <param name="producer">Producer that creates a Button subclass.</param>
+  /// <param name="description">Driver description.</param>
+  public ButtonDriver(Func<T> producer, string description = "")
+    : base(producer, description)
+  {
+  }
 }
 
 /// <summary>
@@ -24,12 +25,13 @@ public class ButtonDriver<T> : BaseButtonDriver<T> where T : Button
 /// </summary>
 public sealed class ButtonDriver : ButtonDriver<Button>
 {
-    /// <summary>
-    /// Creates a new ButtonDriver.
-    /// </summary>
-    /// <param name="producer">Producer that creates a Button subclass.</param>
-    /// <param name="description">Driver description.</param>
-    public ButtonDriver(Func<Button> producer, string description = "") : base(producer, description)
-    {
-    }
+  /// <summary>
+  /// Creates a new ButtonDriver.
+  /// </summary>
+  /// <param name="producer">Producer that creates a Button subclass.</param>
+  /// <param name="description">Driver description.</param>
+  public ButtonDriver(Func<Button> producer, string description = "")
+    : base(producer, description)
+  {
+  }
 }
