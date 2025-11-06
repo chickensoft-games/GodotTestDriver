@@ -53,7 +53,8 @@ This library provides a `Fixture` class which you can use to create and automati
 ```csharp
 using GodotTestDriver;
 
-class MyTest {
+class MyTest
+{
      // You will need get hold of a SceneTree instance. The way you get
      // hold of it will depend on the testing framework you use.
     SceneTree tree = ...;
@@ -64,7 +65,8 @@ class MyTest {
     // This is a setup method. The exact way of how stuff is set up
     // differs from framework to framework, but most have a setup
     // method.
-    async Task Setup() {
+    async Task Setup()
+    {
         // Create a new Fixture instance.
         fixture = new Fixture(tree);
 
@@ -80,7 +82,8 @@ class MyTest {
     }
 
 
-    async Task TestBattle() {
+    async Task TestBattle()
+    {
         // load a monster. again, it will be automatically disposed.
         var monster = fixture.LoadScene<Monster>("res://monster.tscn");
 
@@ -104,7 +107,8 @@ class MyTest {
     // the test is running. These will be performed after the
     // test is done. This is very useful for cleaning up stuff
     // that is created during the tests.
-    async Task TestSaving() {
+    async Task TestSaving()
+    {
         ...
         // save the game
         GameDialog.SaveButton.Click();
@@ -127,7 +131,8 @@ class MyTest {
     // This is a cleanup method. Like the setup method, the exact
     // way of how stuff is cleaned up differs from framework to
     // framework, but most have a cleanup method.
-    async Task TearDown() {
+    async Task TearDown()
+    {
         // dispose of anything we created during the test.
         // this will also run all custom cleanup steps.
         await Fixture.Cleanup();
@@ -160,11 +165,12 @@ Test drivers work on a part of the node tree. Each test driver takes a _producer
 How exactly this node is produced depends on your game and test setup. Lets say you would use a classic test framework that has some kind of `Setup` method:
 
 ```csharp
-class MyTest {
-
+class MyTest
+{
     ButtonDriver buttonDriver;
 
-    async Task Setup() {
+    async Task Setup()
+    {
         buttonDriver = new ButtonDriver(() => GetTree().GetNodeOrNull<Button>("UI/MyButton"));
 
         // ... more setup here
@@ -180,7 +186,8 @@ After you have created the test driver you can use it in your tests:
 
 ```csharp
 
-void TestButtonDisappearsWhenClicked() {
+void TestButtonDisappearsWhenClicked()
+{
     // when
     // will click the button in its center. This will actually
     // move the mouse set a click and trigger all the events of a
@@ -205,15 +212,17 @@ You can write a custom driver that represents this dialog to your tests:
 ```csharp
 
 // the root of the dialog would be a panel container.
-class ConfirmationDialogDriver : ControlDriver<PanelContainer> {
-
+class ConfirmationDialogDriver : ControlDriver<PanelContainer>
+{
     // we have a label and three buttons
     public LabelDriver Label { get; }
     public ButtonDriver YesButton { get; }
     public ButtonDriver NoButton { get; }
     public ButtonDriver CancelButton { get; }
 
-    public ConfirmationDialogDriver(Func<PanelContainer> producer) : base(producer) {
+    public ConfirmationDialogDriver(Func<PanelContainer> producer)
+      : base(producer)
+    {
         // for each of the elements we create a new driver, that
         // uses a producer fetching the respective node from below
         // our own root node.
@@ -233,13 +242,15 @@ Now we can use this driver in our tests to test the dialog:
 ```csharp
 ConfirmationDialogDriver dialogDriver;
 
-async Task Setup() {
+async Task Setup()
+{
     // prepare the driver
     dialogDriver = new ConfirmationDialogDriver(() => GetTree().GetNodeOrNull<PanelContainer>("UI/ConfirmationDialog"));
 }
 
 
-void ClickingYesClosesTheDialog() {
+void ClickingYesClosesTheDialog()
+{
     // when
     // we click the yes button.
     dialogDriver.YesButton.ClickCenter();
@@ -393,7 +404,8 @@ Fixture fixture;
 // this is a custom driver for the game under test
 ArenaDriver arena;
 
-public async Task Setup() {
+public async Task Setup()
+{
     fixture = new Fixture(GetTree());
     // add the arena to the scene
     var arenaInstance = fixture.LoadAndAddScene("res://arena.tscn");
@@ -410,7 +422,8 @@ public async Task Setup() {
 
 // you can wait for a certain amount of time for a condition
 // to become true
-public async Task TestCombat() {
+public async Task TestCombat()
+{
     // when
     // i open the arena gates
     arena.OpenGates();
@@ -427,7 +440,8 @@ public async Task TestCombat() {
 
 // you can also check for a condition to stay true for a
 // certain amount of time
-public async Task TestGodMode() {
+public async Task TestGodMode()
+{
     // setup
     // give god mode to the player
     arena.Player.EnableGodMode();
