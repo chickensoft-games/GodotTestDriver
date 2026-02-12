@@ -69,7 +69,7 @@ jobs:
       - name: 🌋 Run Tests in Godot
         working-directory: Chickensoft.GodotTestDriver.Tests
         run: |
-          xvfb-run godot --audio-driver Dummy --rendering-driver ${{ matrix.render-driver }} --run-tests --quit-on-finish --coverage
+          xvfb-run godot --audio-driver Dummy --rendering-driver ${{ matrix.render-driver }} --run-tests --quit-on-finish
           echo "Finished running tests in Godot with emulated ${{ matrix.render-driver }} graphics."
 
           # The --coverage flag is used by GoDotTest to control the exit code
