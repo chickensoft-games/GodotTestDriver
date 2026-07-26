@@ -25,13 +25,13 @@ jobs:
         shell: bash
     steps:
       - name: 🧾 Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           lfs: true
           submodules: 'recursive'
 
       - name: 💽 Setup .NET SDK
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
         with:
           # Use the .NET SDK from global.json in the root of the repository.
           global-json-file: global.json
